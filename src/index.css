@@ -9,6 +9,10 @@
   --bg-color: #f3f3f3;
 }
 
+* {
+  box-sizing: content-box;
+}
+
 /* base styles */
 body {
   font-family: Poppins, sans-serif;
@@ -16,6 +20,12 @@ body {
   font-size: 1.1em;
   background: var(--bg-color);
 }
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
 ul,
 li,
 p,

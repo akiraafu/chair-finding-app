@@ -1,0 +1,11 @@
+nav {
+  background-color: aliceblue;
+}
+
+li.nav-item > a.active {
+  display: block;
+  width: 100%;
+  height: 100%;
+  color: white;
+  background-color: blue;
+}
