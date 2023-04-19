@@ -1,9 +1,13 @@
 import "./create.css";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useAuthContext } from "../../hooks/useAuthContext";
+import { useFirestore } from "../../hooks/useFirestore";
 
 const Create = () => {
+  const { addDocument, response } = useFirestore("items");
   const { user } = useAuthContext();
+  const navigate = useNavigate();
 
   //form field values
   const [title, setTitle] = useState("");
@@ -13,30 +17,7 @@ const Create = () => {
   const [image, setImage] = useState(null);
   const [thumbnailError, setThumbnailError] = useState(null);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(title, location, details, category, image);
-
-    const createdBy = {
-      displayName: user.displayName,
-      photoURL: user.photoURL,
-      id: user.uid,
-    };
-
-    const item = {
-      title,
-      location,
-      details,
-      category,
-      image,
-      comments: [],
-      createdBy,
-    };
-    console.log(item);
-  };
-
   const handleSelectChange = (e) => {
-    console.log(e.target.value);
     setCategory(e.target.value);
   };
 
@@ -61,7 +42,34 @@ const Create = () => {
     }
     setThumbnailError(null);
     setImage(selected);
-    console.log("thumbnail updated");
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log(title, location, details, category, image);
+
+    const createdBy = {
+      displayName: user.displayName,
+      photoURL: user.photoURL,
+      id: user.uid,
+    };
+
+    const doc = {
+      title,
+      location,
+      details,
+      category,
+      comments: [],
+      createdBy,
+    };
+
+    const imageFile = image;
+
+    await addDocument(doc, imageFile);
+
+    if (!response.error) {
+      navigate("/");
+    }
   };
 
   return (

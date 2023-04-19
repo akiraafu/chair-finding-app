@@ -1,5 +1,10 @@
 import { useReducer, useEffect, useState } from "react";
-import { projectFirestore, timestamp } from "../firebase/config";
+import firebase from "firebase/app";
+import {
+  projectFirestore,
+  projectStorage,
+  timestamp,
+} from "../firebase/config";
 
 let initialState = {
   document: null,
@@ -54,17 +59,28 @@ export const useFirestore = (collection) => {
     }
   };
 
-  // add a document
-  const addDocument = async (doc) => {
+  /// add a document
+  const addDocument = async (doc, imageFile) => {
     dispatch({ type: "IS_PENDING" });
 
+    const currentUser = firebase.auth().currentUser;
+
     try {
-      const createdAt = timestamp.fromDate(new Date());
-      const addedDocument = await ref.add({ ...doc, createdAt });
-      dispatchIfNotCancelled({
-        type: "ADDED_DOCUMENT",
-        payload: addedDocument,
-      });
+      //upload imageFile
+      if (currentUser) {
+        const uploadPath = `items/${firebase.auth().currentUser.uid}/${
+          imageFile.name
+        }`;
+        const img = await projectStorage.ref(uploadPath).put(imageFile);
+        const imgUrl = await img.ref.getDownloadURL();
+
+        const createdAt = timestamp.fromDate(new Date());
+        const addedDocument = await ref.add({ ...doc, createdAt, imgUrl });
+        dispatchIfNotCancelled({
+          type: "ADDED_DOCUMENT",
+          payload: addedDocument,
+        });
+      }
     } catch (err) {
       dispatchIfNotCancelled({ type: "ERROR", payload: err.message });
     }
