@@ -28,7 +28,7 @@ function App() {
                 path="/create"
                 element={user ? <Create /> : <Navigate to="/login" />}
               />
-              <Route path="/item/:id" element={<Item />} />
+              <Route path="/items/:id" element={<Item />} />
               <Route
                 path="/login"
                 element={!user ? <Login /> : <Navigate to="/" />}
