@@ -1,50 +1,105 @@
-import { Link, NavLink } from "react-router-dom";
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import { useAuthContext } from "../hooks/useAuthContext";
+
+import { useLogout } from "../hooks/useLogout";
 import "./navbar.css";
 
-const homeClass = location.pathname === "/" ? "active nav-item" : "nav-item";
-
 const Navbar = () => {
+  const [navbarOpen, setNavbarOpen] = useState(false);
+  const { logout, isPending } = useLogout();
+  const { user } = useAuthContext();
+
   return (
-    <nav className="navbar navbar-expand-lg bg-body-tertiary">
-      <div className="container-fluid">
-        <Link to="/" className="navbar-brand">
-          🪑 Chair Issue
-        </Link>
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
+    <nav className="relative flex flex-wrap items-center justify-between px-2 py-3 bg-pink-500 mb-3">
+      <div className="container px-4 mx-auto flex flex-wrap items-center justify-between">
+        <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
+          <Link
+            to="/"
+            className="navbar-brand text-white cursor-pointer text-xl "
+          >
+            🪑 Chair Issue
+          </Link>
+          <button
+            className="text-white cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none"
+            type="button"
+            onClick={() => setNavbarOpen(!navbarOpen)}
+          >
+            <svg
+              class="fill-current h-3 w-3"
+              viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <title>Menu</title>
+              <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
+            </svg>
+          </button>
+        </div>
+        <div
+          className={
+            "lg:flex flex-grow items-center" +
+            (navbarOpen ? " flex" : " hidden")
+          }
+          id="example-navbar-danger"
         >
-          <span className="navbar-toggler-icon"></span>
-        </button>
-        <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+          <ul className="flex flex-col lg:flex-row list-none lg:ml-auto">
             <li className="nav-item">
-              <Link to="/" className="nav-link" aria-current="page">
+              <Link
+                to="/"
+                className="text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase text-white"
+                aria-current="page"
+              >
                 All Chairs
               </Link>
             </li>
             <li className="nav-item">
-              <Link to="/create" className="nav-link">
-                Add New
+              <Link
+                to="/create"
+                className="text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase text-white"
+                aria-current="page"
+              >
+                Add new
               </Link>
             </li>
-            <li className="nav-item">
-              <Link to="/login" className="nav-link">
-                Login
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link to="/signup" className="nav-link">
-                Signup
-              </Link>
-            </li>
+
+            {!user && (
+              <>
+                <li className="nav-item">
+                  <Link
+                    to="/login"
+                    className="text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase text-white"
+                  >
+                    Login
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link
+                    to="/signup"
+                    className="text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase text-white"
+                  >
+                    Signup
+                  </Link>
+                </li>
+              </>
+            )}
           </ul>
-          <button className="btn btn-outline-success">Logout</button>
+          {user && (
+            <>
+              {isPending && (
+                <button className="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0">
+                  Logging out
+                </button>
+              )}
+              {!isPending && (
+                <button
+                  onClick={logout}
+                  className="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0"
+                >
+                  Log out
+                </button>
+              )}
+            </>
+          )}
         </div>
       </div>
     </nav>
