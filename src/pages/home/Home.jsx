@@ -1,13 +1,23 @@
+import ItemList from "../../components/ItemList";
+import Map from "../../components/Map";
+import ItemFilter from "./ItemFilter";
+
 import "./home.css";
 
 const Homepage = () => {
   return (
-    <div>
-      <div className="container mx-auto bg-gray-200 rounded-xl shadow border p-8 m-10">
-        <p className="text-3xl text-gray-700 font-bold mb-5">Welcome!</p>
-        <p className="text-gray-500 text-lg">
-          React and Tailwind CSS in action
-        </p>
+    <div className="">
+      <ItemFilter />
+      <div className="grid grid-cols-2 gap-1 ">
+        <div className=" ">
+          <ItemList />
+          <ItemList />
+          <ItemList />
+          <ItemList />
+        </div>
+        <div className="">
+          <Map />
+        </div>
       </div>
     </div>
   );

@@ -11,6 +11,7 @@ import Signup from "./pages/signup/Signup";
 //styles
 import "./App.css";
 import Navbar from "./components/Navbar";
+import SearchBar from "./components/SearchBar";
 
 function App() {
   const { user, authIsReady } = useAuthContext();
@@ -19,7 +20,8 @@ function App() {
       {authIsReady && (
         <BrowserRouter>
           <Navbar />
-          <div className="container">
+          <div className="flex flex-col items-center justify-between container px-10 pb-6 mx-auto bg-gray-200 rounded-xl shadow border ">
+            <SearchBar />
             <Routes>
               <Route path="/" element={<Home />} />
               <Route
