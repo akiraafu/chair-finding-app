@@ -1,7 +1,6 @@
 import "./item.css";
 
 import { useParams } from "react-router-dom";
-import Map from "../../components/Map";
 import { useDocument } from "../../hooks/useDocument";
 import ItemSummary from "./ItemSummary";
 import ItemComments from "./ItemComments";

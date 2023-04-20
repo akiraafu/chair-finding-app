@@ -1,7 +1,7 @@
 import ItemList from "../../components/ItemList";
-import Map from "../../components/Map";
-import ItemFilter from "./ItemFilter";
 
+import ItemFilter from "./ItemFilter";
+import HomeMap from "../../components/HomeMap";
 import { useCollection } from "../../hooks/useCollection";
 
 import "./home.css";
@@ -18,7 +18,7 @@ const Homepage = () => {
         {error && <p className="error">{error}</p>}
         <div className="">{documents && <ItemList items={documents} />}</div>
         <div className="">
-          <Map />
+          <HomeMap />
         </div>
       </div>
     </div>
