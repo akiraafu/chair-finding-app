@@ -1,28 +1,26 @@
-// const mapboxToken = process.env.MAPBOX_TOKEN;
 import { useState, useEffect } from "react";
 import "mapbox-gl/dist/mapbox-gl.css";
-// import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder";
-// import "@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css";
 import Map, { GeolocateControl, Marker, NavigationControl } from "react-map-gl";
 
-const token =
-  "pk.eyJ1IjoiYWtpcmFmdSIsImEiOiJjbDJhaHNqdHgwNWhzM2pvMm00ZzdmNjZjIn0.opCUJzrZAzXxq3fXM83cEQ";
+const token = import.meta.env.VITE_MAPBOX_TOKEN;
 
-// Initialize geocoder outside of HomeMap component
-// const geocoder = new MapboxGeocoder({
-//   accessToken: token,
-// localGeocoder: forwardGeocoder,
-// zoom: 14,
-// placeholder: 'Enter search e.g. Cannington',
-// });
+const HomeMap = ({ coords }) => {
+  const [lng, setLng] = useState(119);
+  const [lat, setLat] = useState(31);
+  const [mapKey, setMapKey] = useState(0);
 
-const HomeMap = () => {
-  const [lng, setLng] = useState(115.8613);
-  const [lat, setLat] = useState(-31.9523);
+  useEffect(() => {
+    if (coords && coords.length > 1) {
+      setLng(coords[0]);
+      setLat(coords[1]);
+      setMapKey((prevKey) => prevKey + 1); // Update key to trigger map refresh
+    }
+  }, [coords]);
 
   return (
     <div>
       <Map
+        key={mapKey}
         mapboxAccessToken={token}
         style={{
           width: "500px",
@@ -32,22 +30,12 @@ const HomeMap = () => {
         initialViewState={{
           longitude: lng,
           latitude: lat,
-          zoom: 8,
+          zoom: 14,
         }}
         mapStyle="mapbox://styles/mapbox/streets-v9"
       >
         <Marker longitude={lng} latitude={lat} />
         <NavigationControl position="bottom-right" />
-        <GeolocateControl />
-        {/* 
-        <MapboxGeocoder
-          accessToken={token}
-          onResult={handleGeocoderResult}
-          placeholder="Search for a location"
-          position="top-right"
-          // Set the geocoder instance to the global Mapbox instance
-          {...geocoder.setInstance(mapboxgl)}
-        /> */}
       </Map>
     </div>
   );
