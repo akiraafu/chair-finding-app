@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import "mapbox-gl/dist/mapbox-gl.css";
 import Map, { GeolocateControl, Marker, NavigationControl } from "react-map-gl";
 
-const token = import.meta.env.VITE_MAPBOX_TOKEN;
+// const token = import.meta.env.VITE_MAPBOX_TOKEN;
 
 const HomeMap = ({ coords }) => {
   const [lng, setLng] = useState(119);

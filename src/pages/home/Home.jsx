@@ -6,11 +6,12 @@ import { useCollection } from "../../hooks/useCollection";
 import "./home.css";
 import Geocoder from "../../components/Geocoder";
 import { useState } from "react";
+import ClusterMap from "../../components/ClusterMap";
 
 const Homepage = () => {
   const [coords, setCoords] = useState("");
   const { documents, error } = useCollection("items");
-  console.log(coords, "from home jsx");
+  // console.log(coords, "from home jsx");
 
   return (
     <div className="">
@@ -21,8 +22,9 @@ const Homepage = () => {
         {error && <p className="error">{error}</p>}
         <div className="">{documents && <ItemList items={documents} />}</div>
         <div className="">
-          <HomeMap coords={coords} />
-          <Geocoder getCoords={(coords) => setCoords(coords)} />
+          <ClusterMap />
+          {/* <HomeMap coords={coords} /> */}
+          {/* <Geocoder getCoords={(coords) => setCoords(coords)} /> */}
         </div>
       </div>
     </div>
