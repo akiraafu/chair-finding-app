@@ -19,7 +19,7 @@ const itemSummary = ({ item }) => {
           <p className="mb-2 pb-2 leading-normal border-b-2 border-gray-300 ">
             {item.details}
           </p>
-          <p className="mb-2 leading-normal"> {item.location}</p>
+          <p className="mb-2 leading-normal"> {item.location[0]}</p>
           <p className="mb-2 leading-normal">
             Submitted by <strong>{author}</strong>
           </p>
