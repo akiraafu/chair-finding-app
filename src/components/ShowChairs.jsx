@@ -4,16 +4,12 @@ import useSupercluster from "use-supercluster";
 import { Marker, useMap } from "react-leaflet";
 import "./showChairs.css";
 
-const icons = {};
 const fetchIcon = (count, size) => {
-  if (!icons[count]) {
-    icons[count] = L.divIcon({
-      html: `<div class="cluster-marker" style="width: ${size}px; height: ${size}px;">
+  return L.divIcon({
+    html: `<div class="cluster-marker" style="width: ${size}px; height: ${size}px;">
         ${count}
       </div>`,
-    });
-  }
-  return icons[count];
+  });
 };
 
 const chairIcon = new L.Icon({
@@ -22,11 +18,15 @@ const chairIcon = new L.Icon({
 });
 
 const ShowChairs = ({ data }) => {
-  console.log(data);
   const maxZoom = 22;
   const [bounds, setBounds] = useState(null);
   const [zoom, setZoom] = useState(12);
   const map = useMap();
+
+  // Check if data is defined and is an array
+  if (!data || !Array.isArray(data)) {
+    return null;
+  }
 
   // get map bounds
   function updateMap() {
@@ -58,7 +58,7 @@ const ShowChairs = ({ data }) => {
 
   const points = data.map((d) => ({
     type: "Feature",
-    properties: {},
+    properties: { cluster: false, category: "chairs" },
     geometry: {
       type: "Point",
       coordinates: [
@@ -67,8 +67,6 @@ const ShowChairs = ({ data }) => {
       ],
     },
   }));
-
-  console.log(points);
 
   const { clusters, supercluster } = useSupercluster({
     points: points,
@@ -84,7 +82,8 @@ const ShowChairs = ({ data }) => {
       {clusters.map((cluster) => {
         // every cluster point has coordinates
         const [longitude, latitude] = cluster.geometry.coordinates;
-        // the point may be either a cluster or a crime point
+
+        // the point may be either a cluster or a chair point
         const { cluster: isCluster, point_count: pointCount } =
           cluster.properties;
 
@@ -113,7 +112,7 @@ const ShowChairs = ({ data }) => {
           );
         }
 
-        // we have a single point (crime) to render
+        // we have a single point (chair) to render
         return (
           <Marker
             key={Math.random()}
