@@ -62,11 +62,13 @@ const ShowChairs = ({ data }) => {
     geometry: {
       type: "Point",
       coordinates: [
-        parseFloat(d.geometry.coordinates[0]),
-        parseFloat(d.geometry.coordinates[1]),
+        parseFloat(d.location[1]._long),
+        parseFloat(d.location[1]._lat),
       ],
     },
   }));
+
+  console.log(points);
 
   const { clusters, supercluster } = useSupercluster({
     points: points,

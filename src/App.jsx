@@ -21,8 +21,7 @@ function App() {
       {authIsReady && (
         <BrowserRouter>
           <Navbar />
-          <div className="flex flex-col items-center justify-between container px-10 pb-6 bg-gray-200  shadow border ">
-            <SearchBar />
+          <div className="flex flex-col items-center justify-between container px-10 pb-6 mx-auto ">
             <Routes>
               <Route path="/" element={<Home />} />
               <Route

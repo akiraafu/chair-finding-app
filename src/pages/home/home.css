@@ -1,11 +1,11 @@
 .project-filter {
+  display: block;
   margin: 30px auto;
 }
 
-.project-filter nav {
+.project-filter div {
   display: flex;
   padding: 10px;
-  background-color: #fff;
   border-radius: 4px;
 }
 
@@ -16,17 +16,20 @@
 
 .project-filter button {
   background: transparent;
+  padding: 8px 20px;
   border: 0;
   font-family: inherit;
-  font-weight: bold;
   color: var(--text-color);
   cursor: pointer;
-  border-right: 1px solid #e4e4e4;
+  border: 1px solid #e4e4e4;
+  border-radius: 25px;
   font-size: 0.9em;
+  margin: 5px;
 }
 
-.project-filter button:last-child {
-  border: 0;
+.project-filter button:hover {
+  background-color: #ed64a6;
+  color: white;
 }
 
 .project-filter button.active {

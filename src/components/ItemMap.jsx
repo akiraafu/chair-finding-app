@@ -4,7 +4,7 @@ import Map, { GeolocateControl, Marker, NavigationControl } from "react-map-gl";
 
 // const token = import.meta.env.VITE_MAPBOX_TOKEN;
 
-const HomeMap = ({ coords }) => {
+const ItemMap = ({ coords }) => {
   const [lng, setLng] = useState(119);
   const [lat, setLat] = useState(31);
   const [mapKey, setMapKey] = useState(0);
@@ -41,4 +41,4 @@ const HomeMap = ({ coords }) => {
   );
 };
 
-export default HomeMap;
+export default ItemMap;

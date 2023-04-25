@@ -1,19 +1,22 @@
 import React from "react";
 import { MapContainer, TileLayer } from "react-leaflet";
-import data from "../data";
+
 import ShowChairs from "./ShowChairs";
+import { useCollection } from "../hooks/useCollection";
 
 import "./clusterMap.css";
 
 const ClusterMap = () => {
+  const { documents } = useCollection("items");
+
   return (
-    <div>
-      <MapContainer center={[52.6376, -1.135171]} zoom={13} maxZoom={17}>
+    <div className="shadow rounded-2xl">
+      <MapContainer center={[-28, 115]} zoom={5} maxZoom={17}>
         <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         />
-        <ShowChairs data={data} />
+        {documents && <ShowChairs data={documents} />}
       </MapContainer>
     </div>
   );

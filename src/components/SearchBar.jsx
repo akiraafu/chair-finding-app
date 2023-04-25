@@ -6,12 +6,12 @@ const SearchBar = () => {
   const { user } = useAuthContext();
   console.log(user);
   return (
-    <div className="grid grid-cols-2 py-5">
-      <div className="flex items-center">
-        <div className="flex space-x-1">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-3 pt-5 container ">
+      <div className="flex items-center max-w-md">
+        <div className="flex space-x-1 w-full">
           <input
             type="text"
-            className="block w-full px-4 py-2 text-pink-700 bg-white border rounded-full focus:border-pink-400 focus:ring-pink-300 focus:outline-none focus:ring focus:ring-opacity-40"
+            className="block w-full px-10 py-2 text-pink-700 bg-white border rounded-full focus:border-pink-400 focus:ring-pink-300 focus:outline-none focus:ring focus:ring-opacity-40"
             placeholder="Search..."
           />
           <button className="px-4 text-white bg-pink-500 rounded-full ">

@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuthContext } from "../hooks/useAuthContext";
-
 import { useLogout } from "../hooks/useLogout";
 import "./navbar.css";
 
@@ -11,7 +10,7 @@ const Navbar = () => {
   const { user } = useAuthContext();
 
   return (
-    <nav className="relative flex flex-wrap items-center justify-between px-2 py-3 bg-pink-500">
+    <nav className="relative flex flex-wrap items-center justify-between px-2 py-3 bg-pink-500 shadow">
       <div className="container px-4 mx-auto flex flex-wrap items-center justify-between">
         <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
           <Link
