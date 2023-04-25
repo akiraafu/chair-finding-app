@@ -30,6 +30,9 @@ const ItemComments = ({ item }) => {
     <div className="item-comments">
       <h4>Item Comments</h4>
       <ul>
+        {item.comments.length === 0 && (
+          <p className="text-gray-400">No comments yet</p>
+        )}
         {item.comments.length > 0 &&
           item.comments.map((comment) => (
             <li key={comment.id}>

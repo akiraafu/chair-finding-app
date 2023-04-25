@@ -56,7 +56,7 @@ const Create = () => {
 
     const doc = {
       title,
-      location,
+      location: [location, ""],
       details,
       category,
       comments: [],

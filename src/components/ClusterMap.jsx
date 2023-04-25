@@ -1,7 +1,5 @@
 import React from "react";
 import { MapContainer, TileLayer } from "react-leaflet";
-// import { QueryClient, QueryClientProvider } from "react-query";
-// const queryClient = new QueryClient();
 import data from "../data";
 import ShowChairs from "./ShowChairs";
 

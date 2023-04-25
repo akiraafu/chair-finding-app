@@ -11,8 +11,8 @@ const ItemList = ({ items }) => {
       {items.map((item) => (
         <Link to={`/items/${item.id}`} key={item.id}>
           <div className="flex max-w-md overflow-hidden bg-white rounded-lg shadow-lg mb-2">
-            <div className="w-1/3 bg-cover bg-landscape">
-              <img src={item.imgUrl} alt="" />
+            <div className="w-1/3 bg-cover bg-landscape ">
+              <img className="h-full object-cover" src={item.imgUrl} alt="" />
             </div>
             <div className="w-2/3 p-4">
               <h1 className="text-2xl font-bold text-gray-900">{item.title}</h1>
