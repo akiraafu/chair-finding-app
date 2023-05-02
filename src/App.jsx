@@ -22,7 +22,7 @@ function App() {
       {authIsReady && (
         <BrowserRouter>
           <Navbar />
-          <div className=" flex flex-col items-center justify-between container mx-auto ">
+          <div className="flex flex-col items-center justify-between container mx-auto ">
             <Routes>
               <Route path="/" element={<Home />} />
 

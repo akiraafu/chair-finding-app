@@ -5,19 +5,20 @@ import Background from "../../assets/bg.jpg";
 const Home = () => {
   return (
     <div
-      className="w-full h-screen bg-no-repeat bg-hero bg-cover bg-center bg-fixed flex flex-col justify-center items-center"
+      className="w-screen h-[calc(100vh-115px)] bg-no-repeat bg-hero bg-cover bg-center bg-fixed flex flex-col justify-center items-center"
       style={{
         backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${Background})`,
       }}
     >
       <h1 className="text-white text-5xl font-bold mb-5">Chiar Issue</h1>
-      <p className="text-white max-w-xl ">Welcome to Chair Issue!</p>
-      <p className="text-white max-w-xl text-center">
+      <p className="text-white max-w-md md:max-w-xl px-3 ">
+        Welcome to Chair Issue!
+      </p>
+      <p className="text-white max-w-md  md:max-w-xl text-center  px-3">
         Jump right in and explor free chairs shared by our friendly users.
       </p>
-      <p className="text-white max-w-xl mb-5 text-center">
-        Feel free to share some if you have any chairs for others to pick up or
-        even just see any chairs is being available in the public!
+      <p className="text-white max-w-md  md:max-w-xl mb-5 text-center  px-3">
+        Feel free to share some if you find any chairs for others to pick up!
         {/* We believe that sharing is caring, and that everyone should have access
         to functional and comfortable chair, regardless of their financial
         situation. That's why our app is completely free to use, and we

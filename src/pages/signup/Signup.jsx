@@ -42,54 +42,63 @@ const Signup = () => {
   };
 
   return (
-    <form className="auth-form" onSubmit={handleSubmit}>
-      <h2>Sign up</h2>
-      <label>
-        <span>Display name:</span>
-        <input
-          type="text"
-          required
-          onChange={(e) => {
-            setDisplayName(e.target.value);
-          }}
-          value={displayName}
-        />
-      </label>
-      <label>
-        <span>Email:</span>
-        <input
-          type="email"
-          required
-          onChange={(e) => {
-            setEmail(e.target.value);
-          }}
-          value={email}
-        />
-      </label>
-      <label>
-        <span>Password:</span>
-        <input
-          type="password"
-          required
-          onChange={(e) => {
-            setPassword(e.target.value);
-          }}
-          value={password}
-        />
-      </label>
-      <label>
-        <span>Profile Photo</span>
-        <input type="file" required onChange={handleFileChange} />
-        {thumbnailError && <div className="error">{thumbnailError}</div>}
-      </label>
-      {!isPending && <button className="button">Sign up</button>}
-      {isPending && (
-        <button className="button" disabled>
-          Loading
-        </button>
-      )}
-      {error && <div className="error">{error}</div>}
-    </form>
+    <div className="h-100">
+      <form className="auth-form" onSubmit={handleSubmit}>
+        <h2>Sign up</h2>
+        <label>
+          <span>Display name:</span>
+          <input
+            type="text"
+            required
+            onChange={(e) => {
+              setDisplayName(e.target.value);
+            }}
+            value={displayName}
+          />
+        </label>
+        <label>
+          <span>Email:</span>
+          <input
+            type="email"
+            required
+            onChange={(e) => {
+              setEmail(e.target.value);
+            }}
+            value={email}
+          />
+        </label>
+        <label>
+          <span>Password:</span>
+          <input
+            type="password"
+            required
+            onChange={(e) => {
+              setPassword(e.target.value);
+            }}
+            value={password}
+          />
+        </label>
+        <label>
+          <span>Profile Photo</span>
+          <input type="file" required onChange={handleFileChange} />
+          {thumbnailError && <div className="error">{thumbnailError}</div>}
+        </label>
+        {!isPending && (
+          <button className="text-white text-md px-8 py-2 border-2 rounded-md bg-amber-500 hover:border-2 hover:border-amber-500 hover:bg-transparent hover:text-amber-500 ">
+            Sign up
+          </button>
+        )}
+        {isPending && (
+          <button
+            className="text-white text-md px-8 py-2 border-2 rounded-md bg-amber-500 hover:border-2 hover:border-amber-500 hover:bg-transparent hover:text-amber-500 "
+            disabled
+          >
+            Loading
+          </button>
+        )}
+        {error && <div className="error">{error}</div>}
+      </form>
+    </div>
   );
 };
 
