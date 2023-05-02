@@ -2,7 +2,7 @@ import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { useAuthContext } from "./hooks/useAuthContext";
 
 // pages
-import Home from "./pages/home/Home";
+import AllChairs from "./pages/allChairs/AllChairs";
 import Create from "./pages/create/Create";
 import Item from "./pages/item/Item";
 import Login from "./pages/login/Login";
@@ -13,6 +13,7 @@ import "./App.css";
 import Navbar from "./components/Navbar";
 import SearchBar from "./components/SearchBar";
 import Footer from "./components/Footer";
+import Home from "./pages/home/Home";
 
 function App() {
   const { user, authIsReady } = useAuthContext();
@@ -24,6 +25,8 @@ function App() {
           <div className="flex flex-col items-center justify-between container px-10 pb-6 mx-auto ">
             <Routes>
               <Route path="/" element={<Home />} />
+
+              <Route path="/all" element={<AllChairs />} />
               <Route
                 path="/create"
                 element={user ? <Create /> : <Navigate to="/login" />}

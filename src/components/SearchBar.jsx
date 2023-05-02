@@ -6,7 +6,7 @@ const SearchBar = () => {
   const { user } = useAuthContext();
   console.log(user);
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-3 pt-5 container ">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-1 pt-5">
       <div className="flex items-center max-w-md">
         <div className="flex space-x-1 w-full">
           <input

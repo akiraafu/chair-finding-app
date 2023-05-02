@@ -36,7 +36,7 @@ const Navbar = () => {
         </div>
         <div
           className={
-            "flex-col md:flex-row flex flex-grow items-center" +
+            "flex-col lg:flex-row lg:flex flex-grow items-center" +
             (navbarOpen ? " flex" : " hidden")
           }
           id="example-navbar-danger"
@@ -45,6 +45,15 @@ const Navbar = () => {
             <li className="nav-item">
               <Link
                 to="/"
+                className="text-sm text-center font-bold leading-relaxed inline-block mx-4 py-2 whitespace-nowrap uppercase text-white"
+                aria-current="page"
+              >
+                Home
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link
+                to="/all"
                 className="text-sm text-center font-bold leading-relaxed inline-block mx-4 py-2 whitespace-nowrap uppercase text-white"
                 aria-current="page"
               >
@@ -85,14 +94,14 @@ const Navbar = () => {
           {user && (
             <>
               {isPending && (
-                <button className="inline-block text-center text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0">
+                <button className="inline-block text-center text-sm mx-4 px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0">
                   Logging out
                 </button>
               )}
               {!isPending && (
                 <button
                   onClick={logout}
-                  className="inline-block text-center text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0"
+                  className="inline-block text-center text-sm mx-4 px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0"
                 >
                   Log out
                 </button>
