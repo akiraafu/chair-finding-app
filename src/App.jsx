@@ -18,11 +18,11 @@ import Home from "./pages/home/Home";
 function App() {
   const { user, authIsReady } = useAuthContext();
   return (
-    <div className="App">
+    <div className="App h-screen">
       {authIsReady && (
         <BrowserRouter>
           <Navbar />
-          <div className="flex flex-col items-center justify-between container px-10 pb-6 mx-auto ">
+          <div className=" flex flex-col items-center justify-between container mx-auto ">
             <Routes>
               <Route path="/" element={<Home />} />
 
