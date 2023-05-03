@@ -34,7 +34,7 @@ const ItemComments = ({ item }) => {
         <img className="w-full h-full object-cover" src={Map} alt="" />
       </div>
       <div className="w-full item-comments rounded-lg shadow-md  bg-gray-50 p-5 mb-10">
-        <h4 className="font-bold text-amber-700 mb-3">Item Comments</h4>
+        <h4 className="font-bold text-red-700 mb-3">Item Comments</h4>
         <ul>
           {item.comments.length === 0 && (
             <p className="text-gray-400 my-10">No comments yet</p>
@@ -65,7 +65,7 @@ const ItemComments = ({ item }) => {
                 value={newComment}
               ></textarea>
             </label>
-            <button className="text-white text-sm px-8 py-2 border-2 rounded-md bg-amber-500 hover:border-2 hover:border-amber-500 hover:bg-transparent hover:text-amber-500 ">
+            <button className="text-white text-sm px-8 py-2 border-2 rounded-md bg-red-500 hover:border-2 hover:border-red-500 hover:bg-transparent hover:text-red-500 ">
               Add Comment
             </button>
           </form>
@@ -73,11 +73,11 @@ const ItemComments = ({ item }) => {
       </div>
       {!user && (
         <p>
-          <Link to="/login" className="underline text-amber-700">
+          <Link to="/login" className="underline text-red-700">
             <span>Login</span>
           </Link>
           <span> or </span>
-          <Link to="/signup" className="underline text-amber-700">
+          <Link to="/signup" className="underline text-red-700">
             <span>Signup</span>
           </Link>
           <span> to comment</span>

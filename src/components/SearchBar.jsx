@@ -11,10 +11,10 @@ const SearchBar = () => {
         <div className="flex space-x-1 w-full">
           <input
             type="text"
-            className="block w-full px-10 py-2 text-amber-700 bg-white border rounded-full focus:border-amber-400 focus:ring-amber-300 focus:outline-none focus:ring focus:ring-opacity-40"
+            className="block w-full px-10 py-2 text-red-700 bg-white border rounded-full focus:border-red-400 focus:ring-red-300 focus:outline-none focus:ring focus:ring-opacity-40"
             placeholder="Search..."
           />
-          <button className="px-3 text-amber-500 bg-white rounded-full ">
+          <button className="px-3 text-red-500 bg-white rounded-full ">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="w-5 h-5"
