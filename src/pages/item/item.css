@@ -1,7 +1,5 @@
 /* comment list */
-.item-comments h4 {
-  color: var(--heading-color);
-}
+
 .item-comments li {
   padding: 16px;
   border-radius: 4px;

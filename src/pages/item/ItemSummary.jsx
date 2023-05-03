@@ -1,11 +1,12 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const itemSummary = ({ item }) => {
   const author = item && item.createdBy.displayName;
 
   return (
-    <div>
-      <div className="flex flex-col w-full rounded-lg shadow-md lg:max-w-sm ">
+    <div className="mx-5">
+      <div className="flex flex-col rounded-lg shadow-md max-w-sm lg:max-w-xl bg-gray-50">
         <img
           className="object-cover w-full h-48"
           src={item.imgUrl}
@@ -33,6 +34,10 @@ const itemSummary = ({ item }) => {
           </div>
         </div>
       </div>
+
+      <Link to="/all">
+        <p className="py-3 underline text-amber-700">View All Items</p>
+      </Link>
     </div>
   );
 };
