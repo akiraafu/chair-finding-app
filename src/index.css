@@ -10,7 +10,7 @@
 }
 
 * {
-  box-sizing: content-box;
+  box-sizing: border-box;
 }
 
 /* base styles */

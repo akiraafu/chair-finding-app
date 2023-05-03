@@ -1,10 +1,8 @@
 import "./item.css";
-
 import { useParams } from "react-router-dom";
 import { useDocument } from "../../hooks/useDocument";
 import ItemSummary from "./ItemSummary";
 import ItemComments from "./ItemComments";
-import SearchBar from "../../components/SearchBar";
 
 const Item = () => {
   const { id } = useParams();

@@ -12,12 +12,12 @@ const Navbar = () => {
   const { user } = useAuthContext();
 
   return (
-    <nav className="relative flex flex-wrap items-center justify-between px-2 py-3 bg-red-500 shadow">
+    <nav className="w-full relative flex flex-wrap items-center justify-between px-2 py-3 bg-red-500 shadow">
       <div className="container px-4 mx-auto flex flex-wrap items-center justify-between">
-        <div className="w-full relative flex items-center lg:w-auto lg:static lg:block lg:justify-start">
+        <div className="w-full relative flex justify-between items-center lg:w-auto lg:static lg:block lg:justify-start">
           <Link
             to="/"
-            className="navbar-brand text-white flex items-center cursor-pointer text-2xl font-bold"
+            className="navbar-brand text-white flex items-center cursor-pointer text-2xl font-bold mx-5"
           >
             <img src={Logo} alt="logo" className="w-32" />
           </Link>
@@ -97,14 +97,14 @@ const Navbar = () => {
           {user && (
             <>
               {isPending && (
-                <button className="inline-block text-center text-sm mx-4 px-4 pt-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0">
+                <button className="md:w-48 inline-block text-center text-sm mx-4 px-4 pt-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-red-500 hover:bg-white mt-4 lg:mt-0">
                   Logging out
                 </button>
               )}
               {!isPending && (
                 <button
                   onClick={logout}
-                  className="inline-block text-center text-sm mx-4 px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0"
+                  className="md:w-48 inline-block text-center text-sm mx-4 px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-red-500 hover:bg-white mt-4 lg:mt-0"
                 >
                   Log out
                 </button>
