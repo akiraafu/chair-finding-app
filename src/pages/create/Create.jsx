@@ -73,7 +73,7 @@ const Create = () => {
   };
 
   return (
-    <div className="create-form">
+    <div className="create-form my-10 rounded-lg shadow-md bg-gray-50 p-10">
       <h2 className="page-title font-bold text-lg">Add a new item</h2>
       <form onSubmit={handleSubmit}>
         <label>
@@ -116,7 +116,9 @@ const Create = () => {
           <input type="file" onChange={handleFileChange} />
           {thumbnailError && <div className="error">{thumbnailError}</div>}
         </label>
-        <button className="button">Add Item</button>
+        <button className="text-white text-md px-8 py-2 border-2 rounded-md bg-red-500 hover:border-2 hover:border-red-500 hover:bg-transparent hover:text-red-500 ">
+          Add Item
+        </button>
       </form>
     </div>
   );

@@ -21,7 +21,7 @@ const ItemList = ({ items }) => {
                 <p className="text-sm text-gray-700">
                   Posted {moment(item.createdAt.toDate()).fromNow()}
                 </p>
-                <button className="px-3 py-2 text-xs font-bold text-white uppercase bg-amber-500 rounded">
+                <button className="px-3 py-2 text-xs font-bold text-white uppercase bg-red-500 rounded">
                   View Item
                 </button>
               </div>

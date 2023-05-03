@@ -19,17 +19,18 @@ const AllChairs = () => {
       {/* <div className="flex items-center justify-center mx-auto px-10">
         <SearchBar />
       </div> */}
-      <div className="mb-20 container">
-        <p className="mt-10 md:pl-20">423+ Chairs</p>
-        <h1 className="font-bold text-3xl md:text-5xl md:pl-20">
-          Chairs in Perth
-        </h1>
-
-        <div className="grid grid-cols-1 md:mb-20 md:px-20 md:grid-cols-2 md:h-[38rem] gap-6">
+      <div className="mb-20 mx-auto w-full container flex flex-col justify-start items-center">
+        <div className="grid grid-cols-1 mx-3 lg:mb-20 lg:px-20 lg:grid-cols-2 lg:h-[38rem] gap-6">
           {error && <p className="error">{error}</p>}
-          <div className="mb-5">
+          <div className="mb-5 flex flex-col justify-center items-start">
+            <div className=" flex flex-col items-start">
+              <p className="mt-10">423+ Chairs</p>
+              <h1 className="font-bold text-3xl md:text-5xl ">
+                Chairs in Perth
+              </h1>
+            </div>
             <ItemFilter className="" />
-            <div className="h-[33rem] overflow-y-scroll scrollbar-hide flex flex-col items-center md:items-start">
+            <div className="h-[29rem] overflow-y-scroll scrollbar-hide flex flex-col items-center md:items-start">
               {documents && <ItemList items={documents} />}
             </div>
           </div>

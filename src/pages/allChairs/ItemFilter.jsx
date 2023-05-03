@@ -7,14 +7,17 @@ const ItemFilter = ({ currentFilter, changeFilter }) => {
   };
 
   return (
-    <div className="project-filter w-100">
-      <div className="flex flex-wrap text-sm justify-center md:justify-start  items-center w-100 rounded-xl">
+    <div className="project-filter w-full my-5 flex justify-start">
+      <div className="flex flex-wrap text-sm justify-center md:justify-start items-center w-100 rounded-xl">
         <p>Filter by:</p>
         {filterList.map((f) => (
           <button
             key={f}
             onClick={() => handleClick(f)}
-            className={currentFilter === f ? "active" : ""}
+            className={
+              "hover:bg-red-500 hover:text-white" +
+              (currentFilter === f ? "active" : "")
+            }
           >
             {f}
           </button>

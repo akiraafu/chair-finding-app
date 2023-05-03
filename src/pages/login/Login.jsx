@@ -40,14 +40,14 @@ const Login = () => {
 
         {isPending && (
           <button
-            className="text-white text-md px-8 py-2 border-2 rounded-md bg-amber-500 hover:border-2 hover:border-amber-500 hover:bg-transparent hover:text-amber-500 "
+            className="text-white text-md px-8 py-2 border-2 rounded-md bg-red-500 hover:border-2 hover:border-red-500 hover:bg-transparent hover:text-red-500 "
             disabled
           >
             Loading
           </button>
         )}
         {!isPending && (
-          <button className="text-white text-md px-8 py-2 border-2 rounded-md bg-amber-500 hover:border-2 hover:border-amber-500 hover:bg-transparent hover:text-amber-500 ">
+          <button className="text-white text-md px-8 py-2 border-2 rounded-md bg-red-500 hover:border-2 hover:border-red-500 hover:bg-transparent hover:text-red-500 ">
             Login
           </button>
         )}

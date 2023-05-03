@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useAuthContext } from "../hooks/useAuthContext";
 import { useLogout } from "../hooks/useLogout";
 import "./navbar.css";
+import Logo from "../assets/logo.png";
 import SearchBar from "./SearchBar";
 
 const Navbar = () => {
@@ -11,14 +12,14 @@ const Navbar = () => {
   const { user } = useAuthContext();
 
   return (
-    <nav className="relative flex flex-wrap items-center justify-between px-2 py-3 bg-amber-500 shadow">
+    <nav className="relative flex flex-wrap items-center justify-between px-2 py-3 bg-red-500 shadow">
       <div className="container px-4 mx-auto flex flex-wrap items-center justify-between">
-        <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
+        <div className="w-full relative flex items-center lg:w-auto lg:static lg:block lg:justify-start">
           <Link
             to="/"
-            className="navbar-brand text-white cursor-pointer text-xl "
+            className="navbar-brand text-white flex items-center cursor-pointer text-2xl font-bold"
           >
-            🪑 Chair Issue
+            <img src={Logo} alt="logo" className="w-32" />
           </Link>
           <button
             className="text-white cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none"
@@ -42,7 +43,7 @@ const Navbar = () => {
           }
           id="example-navbar-danger"
         >
-          <ul className="flex flex-col justify-center items-center lg:flex-row list-none lg:ml-auto">
+          <ul className="w-full flex flex-col justify-start items-center lg:flex-row list-none lg:ml-auto">
             <li className="nav-item">
               <Link
                 to="/"
@@ -96,7 +97,7 @@ const Navbar = () => {
           {user && (
             <>
               {isPending && (
-                <button className="inline-block text-center text-sm mx-4 px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0">
+                <button className="inline-block text-center text-sm mx-4 px-4 pt-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0">
                   Logging out
                 </button>
               )}
