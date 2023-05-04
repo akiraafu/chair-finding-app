@@ -8,12 +8,14 @@ import Item from "./pages/item/Item";
 import Login from "./pages/login/Login";
 import Signup from "./pages/signup/Signup";
 
-//styles
-import "./App.css";
+//components
 import Navbar from "./components/Navbar";
-import SearchBar from "./components/SearchBar";
 import Footer from "./components/Footer";
 import Home from "./pages/home/Home";
+import User from "./pages/user/User";
+
+//styles
+import "./App.css";
 
 function App() {
   const { user, authIsReady } = useAuthContext();
@@ -32,6 +34,10 @@ function App() {
                 element={user ? <Create /> : <Navigate to="/login" />}
               />
               <Route path="/items/:id" element={<Item />} />
+              <Route
+                path="/users/:uid"
+                element={user ? <User /> : <Navigate to="/" />}
+              />
               <Route
                 path="/login"
                 element={!user ? <Login /> : <Navigate to="/" />}

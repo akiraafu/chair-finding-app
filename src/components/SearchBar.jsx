@@ -1,5 +1,7 @@
 import "./searchBar.css";
 import { useAuthContext } from "../hooks/useAuthContext";
+import { Link } from "react-router-dom";
+
 import Avatar from "./Avatar";
 
 const SearchBar = () => {
@@ -33,12 +35,14 @@ const SearchBar = () => {
         </div>
       </div>
       {user && (
-        <div className="w-full my-3 user flex justify-center items-center gap-1">
-          <Avatar src={user.photoURL} />
-          <p className="text-white font-bold text-sm">
-            Hey, {user.displayName}
-          </p>
-        </div>
+        <Link to={`/users/${user.uid}`}>
+          <div className="w-full my-3 user flex justify-center items-center gap-1">
+            <Avatar src={user.photoURL} />
+            <p className="text-white font-bold text-sm">
+              Hey, {user.displayName}
+            </p>
+          </div>
+        </Link>
       )}
     </div>
   );
