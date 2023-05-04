@@ -7,7 +7,6 @@ import "./allChairs.css";
 import Geocoder from "../../components/Geocoder";
 import { useState } from "react";
 import ClusterMap from "../../components/ClusterMap";
-import SearchBar from "../../components/SearchBar";
 
 const AllChairs = () => {
   const [coords, setCoords] = useState("");
@@ -16,11 +15,8 @@ const AllChairs = () => {
 
   return (
     <>
-      {/* <div className="flex items-center justify-center mx-auto px-10">
-        <SearchBar />
-      </div> */}
-      <div className="mb-20 mx-auto w-full container flex flex-col justify-start items-center">
-        <div className="grid grid-cols-1 mx-3 lg:mb-20 lg:px-20 lg:grid-cols-2 lg:h-[38rem] gap-6">
+      <div className="w-full mb-20 mx-auto container flex flex-col justify-start items-center">
+        <div className="grid grid-cols-1 mx-3 lg:mb-20 2xl:mt-16 lg:px-20 lg:grid-cols-2 lg:h-[38rem] gap-14">
           {error && <p className="error">{error}</p>}
           <div className="mb-5 flex flex-col justify-center items-start">
             <div className=" flex flex-col items-start">

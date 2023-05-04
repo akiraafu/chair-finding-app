@@ -5,7 +5,7 @@ import Background from "../../assets/bg.jpg";
 const Home = () => {
   return (
     <div
-      className="w-full h-[calc(100vh-120px)] bg-no-repeat bg-hero bg-cover bg-center bg-fixed flex flex-col justify-center items-center"
+      className="w-full h-[calc(100vh-140px)] bg-no-repeat bg-hero bg-cover bg-center bg-fixed flex flex-col justify-center items-center"
       style={{
         backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${Background})`,
       }}

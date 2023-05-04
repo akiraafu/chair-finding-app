@@ -2,11 +2,11 @@ import { useState, useEffect } from "react";
 import "mapbox-gl/dist/mapbox-gl.css";
 import Map, { GeolocateControl, Marker, NavigationControl } from "react-map-gl";
 
-// const token = import.meta.env.VITE_MAPBOX_TOKEN;
+const token = import.meta.env.VITE_MAPBOX_TOKEN;
 
 const ItemMap = ({ coords }) => {
-  const [lng, setLng] = useState(119);
-  const [lat, setLat] = useState(31);
+  const [lng, setLng] = useState(0);
+  const [lat, setLat] = useState(0);
   const [mapKey, setMapKey] = useState(0);
 
   useEffect(() => {
@@ -15,6 +15,7 @@ const ItemMap = ({ coords }) => {
       setLat(coords[1]);
       setMapKey((prevKey) => prevKey + 1); // Update key to trigger map refresh
     }
+    console.log(coords);
   }, [coords]);
 
   return (
@@ -24,7 +25,7 @@ const ItemMap = ({ coords }) => {
         mapboxAccessToken={token}
         style={{
           width: "500px",
-          height: "500px",
+          height: "300px",
           borderRadius: "10px",
         }}
         initialViewState={{

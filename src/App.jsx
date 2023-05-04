@@ -8,21 +8,23 @@ import Item from "./pages/item/Item";
 import Login from "./pages/login/Login";
 import Signup from "./pages/signup/Signup";
 
-//styles
-import "./App.css";
+//components
 import Navbar from "./components/Navbar";
-import SearchBar from "./components/SearchBar";
 import Footer from "./components/Footer";
 import Home from "./pages/home/Home";
+import User from "./pages/user/User";
+
+//styles
+import "./App.css";
 
 function App() {
   const { user, authIsReady } = useAuthContext();
   return (
-    <div className="App h-screen">
+    <div className="app">
       {authIsReady && (
         <BrowserRouter>
           <Navbar />
-          <div className="flex flex-col items-center justify-between container mx-auto ">
+          <div className="w-full flex flex-col items-center justify-center container mx-auto">
             <Routes>
               <Route path="/" element={<Home />} />
 
@@ -32,6 +34,10 @@ function App() {
                 element={user ? <Create /> : <Navigate to="/login" />}
               />
               <Route path="/items/:id" element={<Item />} />
+              <Route
+                path="/users/:uid"
+                element={user ? <User /> : <Navigate to="/" />}
+              />
               <Route
                 path="/login"
                 element={!user ? <Login /> : <Navigate to="/" />}

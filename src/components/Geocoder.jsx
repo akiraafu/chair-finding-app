@@ -1,29 +1,35 @@
 import { useState, useEffect } from "react";
 import { useFetch } from "../hooks/useFetch";
-import { useCollection } from "../hooks/useCollection";
+import { useParams } from "react-router-dom";
+import { useDocument } from "../hooks/useDocument";
 
 const token = import.meta.env.VITE_MAPBOX_TOKEN;
 
 const Geocoder = (props) => {
-  const { documents } = useCollection("items");
+  const { id } = useParams();
+  const { document } = useDocument("items", id);
   const [coord, setCoord] = useState(null);
-  const [query, setQuery] = useState("cannington");
+  const [query, setQuery] = useState("");
 
   const url = `https://api.mapbox.com/geocoding/v5/mapbox.places/${query}.json?limit=1&proximity=ip&access_token=${token}`;
   const { error, isPending, data } = useFetch(url);
 
+  // console.log(id);
+  // console.log(document);
+
   useEffect(() => {
     {
-      documents && setQuery(documents[0].location);
+      document && setQuery(document.location[0]);
       console.log(query);
     }
-  }, [documents]);
+  }, [document]);
 
   useEffect(() => {
     const getcoord = async () => {
       if (data) {
         const coord = await data.features[0].geometry.coordinates;
         setCoord(coord);
+        console.log(coord);
       }
     };
 
@@ -34,7 +40,7 @@ const Geocoder = (props) => {
     }
   }, [data, coord]);
 
-  return <div>{coord && <p>{coord}</p>}</div>;
+  return;
 };
 
 export default Geocoder;
