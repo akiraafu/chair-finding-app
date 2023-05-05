@@ -16,6 +16,7 @@ import User from "./pages/user/User";
 
 //styles
 import "./App.css";
+import Edit from "./pages/edit/Edit";
 
 function App() {
   const { user, authIsReady } = useAuthContext();
@@ -34,8 +35,9 @@ function App() {
                 element={user ? <Create /> : <Navigate to="/login" />}
               />
               <Route path="/items/:id" element={<Item />} />
+              <Route path="/items/:id/edit" element={<Edit />} />
               <Route
-                path="/users/:uid"
+                path="/users/:id"
                 element={user ? <User /> : <Navigate to="/" />}
               />
               <Route

@@ -1,4 +1,3 @@
-import "./create.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuthContext } from "../../hooks/useAuthContext";
@@ -73,7 +72,7 @@ const Create = () => {
   };
 
   return (
-    <div className="create-form my-10 rounded-lg shadow-md bg-gray-50 p-10">
+    <div className="w-2/5 create-form my-10 rounded-lg shadow-md bg-gray-50 p-10">
       <h2 className="page-title font-bold text-lg">Add a new item</h2>
       <form onSubmit={handleSubmit}>
         <label>
