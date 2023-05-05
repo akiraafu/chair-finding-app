@@ -14,7 +14,7 @@ const itemSummary = ({ item }) => {
     <div className="mx-5">
       <div className="flex flex-col rounded-lg shadow-md max-w-sm lg:max-w-xl bg-gray-50">
         <img
-          className="object-cover w-full h-48"
+          className="object-cover object-center w-full h-full"
           src={item.imgUrl}
           alt="image"
         />
