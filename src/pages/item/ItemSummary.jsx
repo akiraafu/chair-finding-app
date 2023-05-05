@@ -1,8 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useAuthContext } from "../../hooks/useAuthContext";
 
 const itemSummary = ({ item }) => {
+  const { user } = useAuthContext();
   const author = item && item.createdBy.displayName;
+
+  const handleClick = () => {
+    alert("checked!");
+  };
 
   return (
     <div className="mx-5">
@@ -22,16 +28,26 @@ const itemSummary = ({ item }) => {
           </p>
           <p className="mb-2 leading-normal"> {item.location[0]}</p>
           <p className="mb-2 leading-normal">
-            Submitted by <strong>{author}</strong>
+            Submitted by&#160;
+            <Link to={`/users/${item.createdBy.id}`}>
+              <strong>{author}</strong>
+            </Link>
           </p>
-          <div className="button-area">
-            <button className="px-4 py-2 mr-2 text-sm text-blue-100 bg-blue-500 rounded shadow">
-              Edit
-            </button>
-            <button className="px-4 py-2 text-sm text-blue-100 bg-red-500 rounded shadow">
-              Delete
-            </button>
-          </div>
+          {user.uid === item.createdBy.id && (
+            <div className="button-area">
+              <Link to={`/items/${item.id}/edit`}>
+                <button className="px-4 py-2 mr-2 text-sm text-white bg-blue-500 rounded shadow">
+                  Edit
+                </button>
+              </Link>
+              <button
+                onClick={handleClick}
+                className="px-4 py-2 text-sm text-white bg-red-500 rounded shadow"
+              >
+                Mark as Unavailable
+              </button>
+            </div>
+          )}
         </div>
       </div>
 

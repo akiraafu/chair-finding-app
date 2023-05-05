@@ -8,28 +8,36 @@ import Avatar from "../../components/Avatar";
 import { useEffect } from "react";
 
 const User = () => {
-  const { user } = useAuthContext();
-  const { documents, error } = useCollection("items");
+  const { id } = useParams();
+  const { document, error } = useDocument("users", id);
 
-  useEffect(() => {
-    const userItems = [];
-    const authorId = documents && documents.map((d) => d.createdBy.id);
-    const userId = user && user.uid;
+  console.log(id);
+  console.log(document && document.displayName);
 
-    if (authorId === userId) {
-    }
+  // const { user } = useAuthContext();
+  // const { documents, error } = useCollection("items");
 
-    console.log(authorId, userId);
-  }, [documents]);
+  // useEffect(() => {
+  //   const userItems = [];
+  //   const authorId = documents && documents.map((d) => d.createdBy.id);
+  //   const userId = user && user.uid;
+
+  //   if (authorId === userId) {
+  //   }
+
+  //   console.log(authorId, userId);
+  // }, [documents]);
 
   return (
     <div className="w-full h-[calc(100vh-140px)]">
       {error && <p className="error">{error}</p>}
 
-      <div className="w-full my-3 user flex flex-col justify-center items-center gap-1">
-        <Avatar src={user.photoURL} />
-        <p className="font-bold text-sm">{user.displayName}</p>
-      </div>
+      {document && (
+        <div className="w-full my-3 user flex flex-col justify-center items-center gap-1">
+          <Avatar src={document.photoURL} />
+          <p className="font-bold text-sm">{document.displayName}</p>
+        </div>
+      )}
     </div>
   );
 };
