@@ -11,9 +11,6 @@ const User = () => {
   const { id } = useParams();
   const { document, error } = useDocument("users", id);
 
-  console.log(id);
-  console.log(document && document.displayName);
-
   // const { user } = useAuthContext();
   // const { documents, error } = useCollection("items");
 

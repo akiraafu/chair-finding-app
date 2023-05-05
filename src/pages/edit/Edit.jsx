@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuthContext } from "../../hooks/useAuthContext";
 import { useFirestore } from "../../hooks/useFirestore";
@@ -13,17 +13,23 @@ const Edit = () => {
   const { user } = useAuthContext();
   const navigate = useNavigate();
 
-  const itemTitle = document && document.title;
-  const itemLocation = document && document.location;
-  console.log(itemTitle);
-
-  //form field values
-  const [title, setTitle] = useState(itemTitle);
-  const [location, setLocation] = useState(itemLocation);
+  // Form field values
+  const [title, setTitle] = useState("");
+  const [location, setLocation] = useState("");
   const [details, setDetails] = useState("");
   const [category, setCategory] = useState("");
   const [image, setImage] = useState(null);
   const [thumbnailError, setThumbnailError] = useState(null);
+
+  useEffect(() => {
+    if (document) {
+      // Convert the database values to the right format and set them in the state
+      setTitle(document.title || "");
+      setLocation(document.location ? document.location[0] : "");
+      setDetails(document.details || "");
+      setCategory(document.category || "");
+    }
+  }, [document]);
 
   const handleSelectChange = (e) => {
     setCategory(e.target.value);
@@ -73,15 +79,14 @@ const Edit = () => {
 
     const imageFile = image;
 
-    await updateDocument(doc, imageFile);
-
+    await updateDocument(id, doc);
     if (!response.error) {
-      navigate("/");
+      navigate(`/items/${id}`);
     }
   };
 
   return (
-    <div className="create-form my-10 rounded-lg shadow-md bg-gray-50 p-10">
+    <div className="w-2/5 create-form my-10 rounded-lg shadow-md bg-gray-50 p-10">
       <h2 className="page-title font-bold text-lg">Edit item</h2>
       {document && (
         <form onSubmit={handleSubmit}>
@@ -120,11 +125,11 @@ const Edit = () => {
               <option value="other">other</option>
             </select>
           </label>
-          <label>
+          {/* <label>
             <span>Add item image</span>
             <input type="file" onChange={handleFileChange} />
             {thumbnailError && <div className="error">{thumbnailError}</div>}
-          </label>
+          </label> */}
           <button className="text-white text-md px-8 py-2 border-2 rounded-md bg-red-500 hover:border-2 hover:border-red-500 hover:bg-transparent hover:text-red-500 ">
             Edit Item
           </button>
