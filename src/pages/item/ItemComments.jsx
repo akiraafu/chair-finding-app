@@ -48,7 +48,7 @@ const ItemComments = ({ item }) => {
       <div className="mb-10 w-full h-1/2 rounded-lg shadow-md ">
         <img className="w-full h-full object-cover" src={Map} alt="" />
         {/* <ItemMap coords={coords} /> */}
-        <Geocoder getCoords={(coords) => setCoords(coords)} document={item} />
+        {/* <Geocoder getCoords={(coords) => setCoords(coords)} /> */}
       </div>
       <div className="w-full item-comments rounded-lg shadow-md  bg-gray-50 p-5 mb-10">
         <h4 className="font-bold text-red-700 mb-3">Item Comments</h4>

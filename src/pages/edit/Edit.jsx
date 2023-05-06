@@ -4,6 +4,7 @@ import { useAuthContext } from "../../hooks/useAuthContext";
 import { useFirestore } from "../../hooks/useFirestore";
 import { useParams } from "react-router-dom";
 import { useDocument } from "../../hooks/useDocument";
+import Geocoder from "../../components/Geocoder";
 
 const Edit = () => {
   const { id } = useParams();
@@ -70,7 +71,7 @@ const Edit = () => {
 
     const doc = {
       title,
-      location: [location],
+      location: [location, coords[1], coords[0]],
       details,
       category,
       comments: [],
@@ -87,6 +88,8 @@ const Edit = () => {
 
   return (
     <div className="w-2/5 create-form my-10 rounded-lg shadow-md bg-gray-50 p-10">
+      <Geocoder getCoords={(coords) => setCoords(coords)} location={location} />
+
       <h2 className="page-title font-bold text-lg">Edit item</h2>
       {document && (
         <form onSubmit={handleSubmit}>
