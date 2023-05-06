@@ -3,6 +3,7 @@ import L from "leaflet";
 import useSupercluster from "use-supercluster";
 import { Marker, useMap } from "react-leaflet";
 import "./showChairs.css";
+import { Link } from "react-router-dom";
 
 const fetchIcon = (count, size) => {
   return L.divIcon({
@@ -56,19 +57,16 @@ const ShowChairs = ({ data }) => {
     };
   }, [map, onMove]);
 
-  const points = data.map((d) => ({
-    type: "Feature",
-    properties: { cluster: false, category: "chairs" },
-    geometry: {
-      type: "Point",
-      coordinates: [
-        parseFloat(d.location[1]._long),
-        parseFloat(d.location[1]._lat),
-      ],
-    },
-  }));
-
-  console.log(points);
+  const points =
+    data &&
+    data.map((d) => ({
+      type: "Feature",
+      properties: { cluster: false, category: "chairs" },
+      geometry: {
+        type: "Point",
+        coordinates: [parseFloat(d.location[2]), parseFloat(d.location[1])],
+      },
+    }));
 
   const { clusters, supercluster } = useSupercluster({
     points: points,

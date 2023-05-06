@@ -1,11 +1,8 @@
 import { useParams } from "react-router-dom";
-import { useAuthContext } from "../../hooks/useAuthContext";
 import { useCollection } from "../../hooks/useCollection";
-
 import { useDocument } from "../../hooks/useDocument";
 
 import Avatar from "../../components/Avatar";
-import { useEffect } from "react";
 import ItemList from "../../components/ItemList";
 
 const User = () => {
@@ -23,15 +20,18 @@ const User = () => {
       {error && <p className="error">{error}</p>}
 
       {document && (
-        <>
-          <div className="w-full my-3 user flex flex-col justify-center items-center gap-1">
+        <div className="mx-3 h-full">
+          <div className="userPage w-full my-3 flex flex-col justify-center items-center gap-1">
             <Avatar src={document.photoURL} />
-            <p className="font-bold text-sm">{document.displayName}</p>
+            <p className="font-bold text-xl">
+              <span>Items posted by:&#160;</span>
+              {document.displayName}
+            </p>
           </div>
-          <div className="h-full overflow-y-scroll scrollbar-hide flex flex-col items-center">
+          <div className="h-2/3 max-h-full overflow-y-scroll scrollbar-hide flex flex-col items-center">
             {userItems && <ItemList items={userItems} />}
           </div>
-        </>
+        </div>
       )}
     </div>
   );

@@ -70,7 +70,7 @@ const Edit = () => {
 
     const doc = {
       title,
-      location: [location, ""],
+      location: [location],
       details,
       category,
       comments: [],

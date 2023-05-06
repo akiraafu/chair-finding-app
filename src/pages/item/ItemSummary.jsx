@@ -33,7 +33,7 @@ const itemSummary = ({ item }) => {
               <strong>{author}</strong>
             </Link>
           </p>
-          {user.uid === item.createdBy.id && (
+          {user && user.uid === item.createdBy.id && (
             <div className="button-area">
               <Link to={`/items/${item.id}/edit`}>
                 <button className="px-4 py-2 mr-2 text-sm text-white bg-blue-500 rounded shadow">
