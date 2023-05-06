@@ -74,8 +74,6 @@ const Create = () => {
     }
   };
 
-  console.log(coords);
-
   return (
     <div className="w-2/5 create-form my-10 rounded-lg shadow-md bg-gray-50 p-10">
       <Geocoder getCoords={(coords) => setCoords(coords)} location={location} />
@@ -118,7 +116,7 @@ const Create = () => {
           </select>
         </label>
         <label>
-          <span>Add item image </span>
+          <span>Add item image &#40;Lower than 100k&#41; </span>
           <input type="file" onChange={handleFileChange} />
           {thumbnailError && <div className="error">{thumbnailError}</div>}
         </label>
