@@ -1,9 +1,12 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { timestamp } from "../../firebase/config";
 import { useAuthContext } from "../../hooks/useAuthContext";
 import { useFirestore } from "../../hooks/useFirestore";
+import moment from "moment";
+
+//components
 import Avatar from "../../components/Avatar";
-import { Link } from "react-router-dom";
 import ItemMap from "../../components/ItemMap";
 
 const ItemComments = ({ item }) => {
@@ -29,7 +32,7 @@ const ItemComments = ({ item }) => {
   };
 
   return (
-    <div className="w-4/5 md:max-w-md lg:max-w-xl flex flex-col justify-center items-start mx-5">
+    <div className="w-4/5 md:max-w-md lg:max-w-xl flex flex-col justify-center items-center md:items-start mx-5">
       <div className="mb-10 w-full h-1/2 rounded-lg shadow-md ">
         <ItemMap />
       </div>
@@ -47,7 +50,10 @@ const ItemComments = ({ item }) => {
                   <p>{comment.displayName}</p>
                 </div>
                 <div className="comment-date">
-                  <p>date here</p>
+                  <p>
+                    Posted&#160;
+                    {moment(comment.createAt.toDate()).fromNow()}
+                  </p>
                 </div>
                 <div className="comment-content">
                   <p>{comment.content}</p>

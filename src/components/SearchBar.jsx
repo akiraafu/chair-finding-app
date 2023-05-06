@@ -8,9 +8,9 @@ const SearchBar = () => {
   const { user } = useAuthContext();
 
   return (
-    <div className="w-2/3  flex flex-col justify-center items-center md:flex-row">
-      <div className="w-full flex justify-center items-center max-w-md">
-        <div className="flex gap-2 w-full">
+    <div className="w-2/3 flex flex-col justify-center items-center md:flex-row">
+      <div className="w-full flex justify-center items-center gap-2 max-w-md">
+        <div className="flex gap-1 w-full">
           <input
             type="text"
             className="block w-full px-10 py-2 text-red-700 bg-white border rounded-full focus:border-red-400 focus:ring-red-300 focus:outline-none focus:ring focus:ring-opacity-40"
@@ -36,7 +36,7 @@ const SearchBar = () => {
       </div>
       {user && (
         <Link to={`/users/${user.uid}`}>
-          <div className="w-full my-3 user flex justify-center items-center gap-1">
+          <div className="w-full m-3 user flex justify-center items-center gap-1">
             <Avatar src={user.photoURL} />
             <p className="text-white font-bold text-sm">
               Hey, {user.displayName}

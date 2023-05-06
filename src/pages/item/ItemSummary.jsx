@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuthContext } from "../../hooks/useAuthContext";
 import { useFirestore } from "../../hooks/useFirestore";
+import moment from "moment";
 
 const itemSummary = ({ item }) => {
   const { user } = useAuthContext();
@@ -24,7 +25,7 @@ const itemSummary = ({ item }) => {
   };
 
   return (
-    <div className="mx-5">
+    <div className="mx-5 flex flex-col md:items-start items-center">
       <div className=" flex flex-col rounded-lg shadow-md max-w-sm lg:max-w-xl bg-gray-50">
         <div className={"w-full h-full" + (availablity ? "" : " image-box")}>
           <img
@@ -38,6 +39,9 @@ const itemSummary = ({ item }) => {
           <h4 className="text-xl font-semibold tracking-tight text-blue-600">
             {item.title}
           </h4>
+          <p className="text-sm text-gray-700">
+            Posted&#160;{moment(item.createdAt.toDate()).fromNow()}
+          </p>
           <p className="mb-2 pb-2 leading-normal border-b-2 border-gray-300 ">
             {item.details}
           </p>

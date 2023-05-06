@@ -1,17 +1,37 @@
-import ItemList from "../../components/ItemList";
-import ItemFilter from "./ItemFilter";
-import ItemMap from "../../components/ItemMap";
+import { useState } from "react";
 import { useCollection } from "../../hooks/useCollection";
 
 import "./allChairs.css";
-import Geocoder from "../../components/Geocoder";
-import { useState } from "react";
+
+//components
 import ClusterMap from "../../components/ClusterMap";
+import ItemList from "../../components/ItemList";
+import ItemFilter from "./ItemFilter";
 
 const AllChairs = () => {
-  const [coords, setCoords] = useState("");
   const { documents, error } = useCollection("items");
-  // console.log(coords, "from home jsx");
+  const [currentFilter, setCurrentFilter] = useState("all");
+
+  const changeFilter = (newFilter) => {
+    setCurrentFilter(newFilter);
+  };
+
+  const items = documents
+    ? documents.filter((document) => {
+        switch (currentFilter) {
+          case "all":
+            return true;
+          case "chair":
+          case "couch":
+          case "other":
+            console.log(document.category, currentFilter);
+            return document.category === currentFilter;
+
+          default:
+            return true;
+        }
+      })
+    : null;
 
   return (
     <>
@@ -20,20 +40,21 @@ const AllChairs = () => {
           {error && <p className="error">{error}</p>}
           <div className="mb-5 flex flex-col justify-center items-start">
             <div className=" flex flex-col items-start">
-              <p className="mt-10">423+ Chairs</p>
-              <h1 className="font-bold text-3xl md:text-5xl ">
+              <p className="mt-5 md:mt-10">Discover free chairs in no time!</p>
+              <h1 className="font-bold text-2xl md:text-5xl ">
                 Chairs in Perth
               </h1>
             </div>
-            <ItemFilter className="" />
+            <ItemFilter
+              currentFilter={currentFilter}
+              changeFilter={changeFilter}
+            />
             <div className="h-[29rem] overflow-y-scroll scrollbar-hide flex flex-col items-center md:items-start">
-              {documents && <ItemList items={documents} />}
+              {documents && <ItemList items={items} />}
             </div>
           </div>
           <div className="h-[38rem] mb-5 md:my-10 ">
             <ClusterMap />
-            {/* <ItemMap coords={coords} /> */}
-            {/* <Geocoder getCoords={(coords) => setCoords(coords)} /> */}
           </div>
         </div>
       </div>
