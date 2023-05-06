@@ -1,23 +1,25 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useAuthContext } from "../../hooks/useAuthContext";
+import { useState } from "react";
 
 const itemSummary = ({ item }) => {
+  const [available, setAvailable] = useState(true);
   const { user } = useAuthContext();
   const author = item && item.createdBy.displayName;
 
-  const handleClick = () => {
-    alert("checked!");
-  };
+  console.log(available);
 
   return (
     <div className="mx-5">
-      <div className="flex flex-col rounded-lg shadow-md max-w-sm lg:max-w-xl bg-gray-50">
-        <img
-          className="object-cover object-center w-full h-full"
-          src={item.imgUrl}
-          alt="image"
-        />
+      <div className=" flex flex-col rounded-lg shadow-md max-w-sm lg:max-w-xl bg-gray-50">
+        <div className={"w-full h-full" + (available ? "" : " image-box")}>
+          <img
+            className="object-cover object-center w-full h-full"
+            src={item.imgUrl}
+            alt="image"
+          />
+        </div>
 
         <div className="p-4">
           <h4 className="text-xl font-semibold tracking-tight text-blue-600">
@@ -41,7 +43,7 @@ const itemSummary = ({ item }) => {
                 </button>
               </Link>
               <button
-                onClick={handleClick}
+                onClick={() => setAvailable(!available)}
                 className="px-4 py-2 text-sm text-white bg-red-500 rounded shadow"
               >
                 Mark as Unavailable
