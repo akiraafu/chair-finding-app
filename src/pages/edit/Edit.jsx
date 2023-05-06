@@ -10,6 +10,7 @@ const Edit = () => {
   const { id } = useParams();
   const { document, error } = useDocument("items", id);
   const { updateDocument, response } = useFirestore("items");
+  const [coords, setCoords] = useState("");
 
   const { user } = useAuthContext();
   const navigate = useNavigate();
@@ -77,8 +78,6 @@ const Edit = () => {
       comments: [],
       createdBy,
     };
-
-    const imageFile = image;
 
     await updateDocument(id, doc);
     if (!response.error) {

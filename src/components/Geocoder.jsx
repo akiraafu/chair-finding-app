@@ -6,7 +6,7 @@ import { useDocument } from "../hooks/useDocument";
 const token = import.meta.env.VITE_MAPBOX_TOKEN;
 
 const Geocoder = (props) => {
-  const { location, getCoords } = props;
+  const { location } = props;
   const { id } = useParams();
   const { document } = useDocument("items", id);
   const [coord, setCoord] = useState(null);
@@ -20,6 +20,8 @@ const Geocoder = (props) => {
       setQuery(location);
     } else if (document && !location) {
       setQuery(query);
+    } else {
+      setQuery("");
     }
   }, [location, query, document]);
 

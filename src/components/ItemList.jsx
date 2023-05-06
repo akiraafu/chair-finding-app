@@ -16,7 +16,7 @@ const ItemList = ({ items }) => {
             </div>
             <div className="w-2/3 p-4">
               <h1 className="text-2xl font-bold text-gray-900">{item.title}</h1>
-              <p className="mt-2 text-sm text-gray-600">2 People want this</p>
+              <p className="mt-2 text-sm text-gray-600">{item.location[0]}</p>
               <div className="flex justify-between mt-3 item-center">
                 <p className="text-sm text-gray-700">
                   Posted {moment(item.createdAt.toDate()).fromNow()}
