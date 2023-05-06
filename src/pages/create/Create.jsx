@@ -63,6 +63,7 @@ const Create = () => {
       category,
       comments: [],
       createdBy,
+      available: true,
     };
 
     const imageFile = image;

@@ -1,16 +1,13 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { timestamp } from "../../firebase/config";
 import { useAuthContext } from "../../hooks/useAuthContext";
 import { useFirestore } from "../../hooks/useFirestore";
 import Avatar from "../../components/Avatar";
 import { Link } from "react-router-dom";
-import Map from "../../assets/Using-Google-Maps-to-Get-Around.png";
 import ItemMap from "../../components/ItemMap";
-import Geocoder from "../../components/Geocoder";
 
 const ItemComments = ({ item }) => {
   const { updateDocument, response } = useFirestore("items");
-  const [coords, setCoords] = useState("");
   const [newComment, setNewComment] = useState("");
   const { user } = useAuthContext();
 
