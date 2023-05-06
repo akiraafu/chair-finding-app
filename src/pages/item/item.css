@@ -27,3 +27,25 @@
   color: var(--text-color);
   font-size: 0.9em;
 }
+
+.image-box {
+  /* filter: grayscale(1); */
+  position: relative;
+}
+
+.image-box img {
+  filter: grayscale(1);
+}
+
+.image-box::after {
+  content: "Unavailable";
+  color: white;
+  font-weight: bold;
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  background-color: red;
+}
