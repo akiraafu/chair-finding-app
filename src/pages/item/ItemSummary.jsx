@@ -14,7 +14,7 @@ const itemSummary = ({ item }) => {
     <div className="mx-5">
       <div className="flex flex-col rounded-lg shadow-md max-w-sm lg:max-w-xl bg-gray-50">
         <img
-          className="object-cover w-full h-48"
+          className="object-cover object-center w-full h-full"
           src={item.imgUrl}
           alt="image"
         />
@@ -33,7 +33,7 @@ const itemSummary = ({ item }) => {
               <strong>{author}</strong>
             </Link>
           </p>
-          {user.uid === item.createdBy.id && (
+          {user && user.uid === item.createdBy.id && (
             <div className="button-area">
               <Link to={`/items/${item.id}/edit`}>
                 <button className="px-4 py-2 mr-2 text-sm text-white bg-blue-500 rounded shadow">
@@ -51,8 +51,8 @@ const itemSummary = ({ item }) => {
         </div>
       </div>
 
-      <Link to="/all">
-        <p className="py-3 underline text-amber-700">View All Items</p>
+      <Link to="/all" className="mt-5 flex w-max">
+        <p className="w-max py-3 underline text-red-700">View All Items</p>
       </Link>
     </div>
   );

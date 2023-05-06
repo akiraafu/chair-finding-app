@@ -11,7 +11,7 @@ const ClusterMap = () => {
 
   return (
     <div className="shadow rounded-2xl">
-      <MapContainer center={[-28, 115]} zoom={5} maxZoom={17}>
+      <MapContainer center={[-32, 115.87]} zoom={8} maxZoom={17}>
         <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'

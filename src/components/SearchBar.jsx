@@ -6,7 +6,7 @@ import Avatar from "./Avatar";
 
 const SearchBar = () => {
   const { user } = useAuthContext();
-  console.log(user);
+
   return (
     <div className="w-2/3  flex flex-col justify-center items-center md:flex-row">
       <div className="w-full flex justify-center items-center max-w-md">

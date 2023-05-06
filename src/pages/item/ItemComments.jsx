@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { timestamp } from "../../firebase/config";
 import { useAuthContext } from "../../hooks/useAuthContext";
 import { useFirestore } from "../../hooks/useFirestore";
@@ -31,12 +31,24 @@ const ItemComments = ({ item }) => {
     }
   };
 
+  useEffect(() => {
+    const getCoords = async () => {
+      const coorsToAdd = [coords[1], coords[0]];
+      if (item && item.id) {
+        await updateDocument(item.id, {
+          location: [item.location[0], ...coorsToAdd],
+        });
+      }
+    };
+    getCoords();
+  }, [coords]);
+
   return (
     <div className="md:max-w-md lg:max-w-xl flex flex-col justify-center items-start mx-5">
       <div className="mb-10 w-full h-1/2 rounded-lg shadow-md ">
         <img className="w-full h-full object-cover" src={Map} alt="" />
-        {/* <ItemMap coords={coords} />
-        <Geocoder getCoords={(coords) => setCoords(coords)} document={item} /> */}
+        {/* <ItemMap coords={coords} /> */}
+        <Geocoder getCoords={(coords) => setCoords(coords)} document={item} />
       </div>
       <div className="w-full item-comments rounded-lg shadow-md  bg-gray-50 p-5 mb-10">
         <h4 className="font-bold text-red-700 mb-3">Item Comments</h4>

@@ -36,10 +36,7 @@ function App() {
               />
               <Route path="/items/:id" element={<Item />} />
               <Route path="/items/:id/edit" element={<Edit />} />
-              <Route
-                path="/users/:id"
-                element={user ? <User /> : <Navigate to="/" />}
-              />
+              <Route path="/users/:id" element={<User />} />
               <Route
                 path="/login"
                 element={!user ? <Login /> : <Navigate to="/" />}

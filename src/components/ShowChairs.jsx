@@ -1,12 +1,13 @@
 import React, { useCallback, useEffect, useState } from "react";
 import L from "leaflet";
 import useSupercluster from "use-supercluster";
-import { Marker, useMap } from "react-leaflet";
+import { Marker, Popup, useMap } from "react-leaflet";
 import "./showChairs.css";
+import { Link } from "react-router-dom";
 
 const fetchIcon = (count, size) => {
   return L.divIcon({
-    html: `<div class="cluster-marker" style="width: ${size}px; height: ${size}px;">
+    html: `<div class="cluster-marker" style="width: ${size}px; height: ${size}px; ">
         ${count}
       </div>`,
   });
@@ -21,6 +22,7 @@ const ShowChairs = ({ data }) => {
   const maxZoom = 22;
   const [bounds, setBounds] = useState(null);
   const [zoom, setZoom] = useState(12);
+  // const [singleItem, setSingleItem] = useState(null);
   const map = useMap();
 
   // Check if data is defined and is an array
@@ -56,19 +58,16 @@ const ShowChairs = ({ data }) => {
     };
   }, [map, onMove]);
 
-  const points = data.map((d) => ({
-    type: "Feature",
-    properties: { cluster: false, category: "chairs" },
-    geometry: {
-      type: "Point",
-      coordinates: [
-        parseFloat(d.location[1]._long),
-        parseFloat(d.location[1]._lat),
-      ],
-    },
-  }));
-
-  console.log(points);
+  const points =
+    data &&
+    data.map((d) => ({
+      type: "Feature",
+      properties: { cluster: false, category: "chairs", singleItemData: d },
+      geometry: {
+        type: "Point",
+        coordinates: [parseFloat(d.location[2]), parseFloat(d.location[1])],
+      },
+    }));
 
   const { clusters, supercluster } = useSupercluster({
     points: points,
@@ -77,13 +76,15 @@ const ShowChairs = ({ data }) => {
     options: { radius: 75, maxZoom: 17 },
   });
 
-  console.log(clusters.length);
-
   return (
     <>
       {clusters.map((cluster) => {
         // every cluster point has coordinates
         const [longitude, latitude] = cluster.geometry.coordinates;
+
+        // access the data object from the properties of the cluster
+        const singleItem = cluster.properties.singleItemData;
+        console.log(singleItem);
 
         // the point may be either a cluster or a chair point
         const { cluster: isCluster, point_count: pointCount } =
@@ -117,10 +118,17 @@ const ShowChairs = ({ data }) => {
         // we have a single point (chair) to render
         return (
           <Marker
-            key={Math.random()}
+            key={cluster.properties.singleItemData?.id || Math.random()}
             position={[latitude, longitude]}
             icon={chairIcon}
-          />
+          >
+            {singleItem && (
+              <Popup>
+                <Link to={`/items/${singleItem.id}`}>{singleItem.title}</Link>
+                😃Open for more!
+              </Popup>
+            )}
+          </Marker>
         );
       })}
     </>

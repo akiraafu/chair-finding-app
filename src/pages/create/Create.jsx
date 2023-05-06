@@ -55,7 +55,7 @@ const Create = () => {
 
     const doc = {
       title,
-      location: [location, ""],
+      location: [location, "", ""],
       details,
       category,
       comments: [],
@@ -111,7 +111,7 @@ const Create = () => {
           </select>
         </label>
         <label>
-          <span>Add item image</span>
+          <span>Add item image </span>
           <input type="file" onChange={handleFileChange} />
           {thumbnailError && <div className="error">{thumbnailError}</div>}
         </label>
