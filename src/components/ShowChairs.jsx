@@ -1,13 +1,13 @@
 import React, { useCallback, useEffect, useState } from "react";
 import L from "leaflet";
 import useSupercluster from "use-supercluster";
-import { Marker, useMap } from "react-leaflet";
+import { Marker, Popup, useMap } from "react-leaflet";
 import "./showChairs.css";
 import { Link } from "react-router-dom";
 
 const fetchIcon = (count, size) => {
   return L.divIcon({
-    html: `<div class="cluster-marker" style="width: ${size}px; height: ${size}px;">
+    html: `<div class="cluster-marker" style="width: ${size}px; height: ${size}px; ">
         ${count}
       </div>`,
   });
@@ -75,6 +75,8 @@ const ShowChairs = ({ data }) => {
     options: { radius: 75, maxZoom: 17 },
   });
 
+  console.log(clusters);
+
   console.log(clusters.length);
 
   return (
@@ -118,7 +120,9 @@ const ShowChairs = ({ data }) => {
             key={Math.random()}
             position={[latitude, longitude]}
             icon={chairIcon}
-          />
+          >
+            <Popup>😃Check the list for more!</Popup>
+          </Marker>
         );
       })}
     </>

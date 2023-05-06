@@ -51,8 +51,8 @@ const itemSummary = ({ item }) => {
         </div>
       </div>
 
-      <Link to="/all">
-        <p className="py-3 underline text-amber-700">View All Items</p>
+      <Link to="/all" className="mt-5 flex w-max">
+        <p className="w-max py-3 underline text-red-700">View All Items</p>
       </Link>
     </div>
   );
