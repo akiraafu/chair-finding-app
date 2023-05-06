@@ -22,6 +22,7 @@ const ShowChairs = ({ data }) => {
   const maxZoom = 22;
   const [bounds, setBounds] = useState(null);
   const [zoom, setZoom] = useState(12);
+  // const [singleItem, setSingleItem] = useState(null);
   const map = useMap();
 
   // Check if data is defined and is an array
@@ -61,7 +62,7 @@ const ShowChairs = ({ data }) => {
     data &&
     data.map((d) => ({
       type: "Feature",
-      properties: { cluster: false, category: "chairs" },
+      properties: { cluster: false, category: "chairs", singleItemData: d },
       geometry: {
         type: "Point",
         coordinates: [parseFloat(d.location[2]), parseFloat(d.location[1])],
@@ -75,15 +76,15 @@ const ShowChairs = ({ data }) => {
     options: { radius: 75, maxZoom: 17 },
   });
 
-  console.log(clusters);
-
-  console.log(clusters.length);
-
   return (
     <>
       {clusters.map((cluster) => {
         // every cluster point has coordinates
         const [longitude, latitude] = cluster.geometry.coordinates;
+
+        // access the data object from the properties of the cluster
+        const singleItem = cluster.properties.singleItemData;
+        console.log(singleItem);
 
         // the point may be either a cluster or a chair point
         const { cluster: isCluster, point_count: pointCount } =
@@ -117,11 +118,16 @@ const ShowChairs = ({ data }) => {
         // we have a single point (chair) to render
         return (
           <Marker
-            key={Math.random()}
+            key={cluster.properties.singleItemData?.id || Math.random()}
             position={[latitude, longitude]}
             icon={chairIcon}
           >
-            <Popup>😃Check the list for more!</Popup>
+            {singleItem && (
+              <Popup>
+                <Link to={`/items/${singleItem.id}`}>{singleItem.title}</Link>
+                😃Open for more!
+              </Popup>
+            )}
           </Marker>
         );
       })}
