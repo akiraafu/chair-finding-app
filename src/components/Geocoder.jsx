@@ -6,6 +6,7 @@ import { useDocument } from "../hooks/useDocument";
 const token = import.meta.env.VITE_MAPBOX_TOKEN;
 
 const Geocoder = (props) => {
+  const { location, getCoords } = props;
   const { id } = useParams();
   const { document } = useDocument("items", id);
   const [coord, setCoord] = useState(null);
@@ -14,15 +15,13 @@ const Geocoder = (props) => {
   const url = `https://api.mapbox.com/geocoding/v5/mapbox.places/${query}.json?limit=1&proximity=ip&access_token=${token}`;
   const { error, isPending, data } = useFetch(url);
 
-  // console.log(id);
-  // console.log(document);
-
   useEffect(() => {
-    {
-      document && setQuery(document.location[0]);
-      console.log(query);
+    if (location) {
+      setQuery(location);
+    } else if (document && !location) {
+      setQuery(query);
     }
-  }, [document]);
+  }, [location, query, document]);
 
   useEffect(() => {
     const getcoord = async () => {
