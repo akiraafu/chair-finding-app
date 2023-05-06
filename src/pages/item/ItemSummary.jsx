@@ -1,19 +1,32 @@
-import React from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuthContext } from "../../hooks/useAuthContext";
-import { useState } from "react";
+import { useFirestore } from "../../hooks/useFirestore";
 
 const itemSummary = ({ item }) => {
-  const [available, setAvailable] = useState(true);
   const { user } = useAuthContext();
+  const { updateDocument, response } = useFirestore("items");
+  const [available, setAvailable] = useState(true);
+
   const author = item && item.createdBy.displayName;
 
-  console.log(available);
+  const availablity = item && item.available;
+
+  const handleClick = async () => {
+    setAvailable(!available);
+    await updateDocument(item.id, {
+      available: available,
+    });
+    console.log(availablity);
+    if (!response.error) {
+      console.log("availablity has changed!");
+    }
+  };
 
   return (
     <div className="mx-5">
       <div className=" flex flex-col rounded-lg shadow-md max-w-sm lg:max-w-xl bg-gray-50">
-        <div className={"w-full h-full" + (available ? "" : " image-box")}>
+        <div className={"w-full h-full" + (availablity ? "" : " image-box")}>
           <img
             className="object-cover object-center w-full h-full"
             src={item.imgUrl}
@@ -43,10 +56,10 @@ const itemSummary = ({ item }) => {
                 </button>
               </Link>
               <button
-                onClick={() => setAvailable(!available)}
+                onClick={handleClick}
                 className="px-4 py-2 text-sm text-white bg-red-500 rounded shadow"
               >
-                Mark as Unavailable
+                Change Availablity
               </button>
             </div>
           )}

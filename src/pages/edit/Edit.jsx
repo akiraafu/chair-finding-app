@@ -77,6 +77,7 @@ const Edit = () => {
       category,
       comments: [],
       createdBy,
+      available: true,
     };
 
     await updateDocument(id, doc);

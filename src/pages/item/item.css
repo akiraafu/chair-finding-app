@@ -29,7 +29,6 @@
 }
 
 .image-box {
-  /* filter: grayscale(1); */
   position: relative;
 }
 
@@ -48,4 +47,5 @@
   line-height: 40px;
   text-align: center;
   background-color: red;
+  transform: rotate(-15deg);
 }
