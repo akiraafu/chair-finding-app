@@ -87,7 +87,7 @@ const Edit = () => {
   };
 
   return (
-    <div className="w-2/5 create-form my-10 rounded-lg shadow-md bg-gray-50 p-10">
+    <div className="mx-3 md:w-2/5 create-form my-10 rounded-lg shadow-md bg-gray-50 p-10">
       <Geocoder getCoords={(coords) => setCoords(coords)} location={location} />
 
       <h2 className="page-title font-bold text-lg">Edit item</h2>

@@ -12,7 +12,7 @@ const Navbar = () => {
   const { user } = useAuthContext();
 
   return (
-    <nav className="w-full relative flex flex-wrap items-center justify-between px-2 py-3 bg-red-500 shadow">
+    <nav className="w-full relative flex flex-wrap items-center justify-between px-2 py-3 bg-red-500 dark:bg-gray-800 shadow">
       <div className="container px-4 mx-auto flex flex-wrap items-center justify-between">
         <div className="w-full relative flex justify-between items-center lg:w-auto lg:static lg:block lg:justify-start">
           <Link
