@@ -10,7 +10,7 @@ const ClusterMap = () => {
   const { documents } = useCollection("items");
 
   return (
-    <div className="shadow rounded-2xl">
+    <div className="shadow rounded-2xl z-0">
       <MapContainer center={[-32, 115.87]} zoom={8} maxZoom={17}>
         <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
