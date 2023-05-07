@@ -10,7 +10,9 @@ const Home = () => {
         backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${Background})`,
       }}
     >
-      <h1 className="text-white text-5xl font-bold mb-5">Chiar Issue</h1>
+      <h1 className="text-white text-2xl md:text-5xl font-bold mb-5">
+        Chiar Issue
+      </h1>
       <p className="text-white max-w-md md:max-w-xl px-3 mb-2">
         Welcome to Chair Issue!
       </p>
@@ -28,7 +30,7 @@ const Home = () => {
       </p>
 
       <Link to="/all">
-        <button className="text-white text-xl px-10 py-3 border-2 rounded-md bg-red-500 hover:border-2 hover:border-red-500 hover:bg-transparent hover:text-red-500 ">
+        <button className="text-white md:text-xl px-5 py-1 md:px-10 md:py-3 border-2 rounded-md bg-red-500 hover:border-2 hover:border-red-500 hover:bg-transparent hover:text-red-500 ">
           View Chairs
         </button>
       </Link>

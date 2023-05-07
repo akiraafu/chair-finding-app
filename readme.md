@@ -46,7 +46,6 @@ This app helps you find and donate unwanted furniture near you. With just a few 
 
 - Node.js: an open-source, cross-platform JavaScript runtime environment for executing JavaScript code on the server-side.
 - Firebase: a backend as a service (BaaS) platform that provides tools and infrastructure for building scalable and secure web and mobile applications.
-- Data Associations: a technique used for associating user data with the respective items (such as furniture posts) using reference method.
 
 #### Firebase Features:
 
