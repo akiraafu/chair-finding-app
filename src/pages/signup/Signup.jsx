@@ -42,7 +42,7 @@ const Signup = () => {
   };
 
   return (
-    <div className="h-100">
+    <div className="xl:h-[calc(100vh-100px)] flex justify-center items-center">
       <form className="auth-form" onSubmit={handleSubmit}>
         <h2>Sign up</h2>
         <label>

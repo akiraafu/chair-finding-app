@@ -17,7 +17,12 @@ const ItemList = ({ items }) => {
                 (item && item.available ? "" : " image-box")
               }
             >
-              <img className="h-full object-cover" src={item.imgUrl} alt="" />
+              <img
+                className="h-full object-cover"
+                loading="lazy"
+                src={item.imgUrl}
+                alt=""
+              />
             </div>
             <div className="w-2/3 p-2 md:p-4">
               <h1 className="md:text-2xl font-bold text-gray-900">

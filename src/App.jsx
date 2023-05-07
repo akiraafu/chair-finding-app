@@ -13,9 +13,6 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Home from "./pages/home/Home";
 import User from "./pages/user/User";
-
-//styles
-import "./App.css";
 import Edit from "./pages/edit/Edit";
 
 function App() {
