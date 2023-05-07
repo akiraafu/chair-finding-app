@@ -36,9 +36,9 @@ const AllChairs = () => {
   return (
     <>
       <div className="w-full mb-20 mx-auto container flex flex-col justify-start items-center">
-        <div className="grid grid-cols-1 mx-3 lg:mb-20 2xl:mt-16 lg:px-20 lg:grid-cols-2 lg:h-[38rem] gap-14">
+        <div className="w-5/6 grid grid-cols-1 mx-3 lg:mb-20 2xl:mt-16 lg:px-20 lg:grid-cols-2 lg:h-[38rem] gap-8">
           {error && <p className="error">{error}</p>}
-          <div className="mb-5 flex flex-col justify-center items-start">
+          <div className="w-full mb-5 flex flex-col justify-center items-start">
             <div className=" flex flex-col items-start">
               <p className="mt-5 md:mt-10">Discover free chairs in no time!</p>
               <h1 className="font-bold text-2xl md:text-5xl ">
@@ -49,11 +49,11 @@ const AllChairs = () => {
               currentFilter={currentFilter}
               changeFilter={changeFilter}
             />
-            <div className="h-[29rem] overflow-y-scroll scrollbar-hide flex flex-col items-center md:items-start">
+            <div className="w-full h-[29rem] overflow-y-scroll scrollbar-hide flex flex-col items-center md:items-start">
               {documents && <ItemList items={items} />}
             </div>
           </div>
-          <div className="h-[38rem] mb-5 md:my-10 ">
+          <div className="w-full h-[38rem] mb-5 md:my-10 ">
             <ClusterMap />
           </div>
         </div>

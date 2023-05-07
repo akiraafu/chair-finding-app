@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useLogin } from "../../hooks/useLogin";
-import "./login.css";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -12,7 +11,7 @@ const Login = () => {
   };
 
   return (
-    <div className="h-[calc(100vh-115px)]">
+    <div className="xl:h-[calc(100vh-115px)] flex justify-center items-center">
       <form className="auth-form" onSubmit={handleSubmit}>
         <h2>Login</h2>
         <label>
