@@ -11,7 +11,12 @@ const ItemList = ({ items }) => {
       {items.map((item) => (
         <Link to={`/items/${item.id}`} key={item.id}>
           <div className="flex h-28 md:h-min max-w-md overflow-hidden md:max-w-lg bg-white rounded-lg shadow-lg mb-4">
-            <div className="w-1/3 bg-cover bg-landscape ">
+            <div
+              className={
+                "w-1/3 bg-cover bg-landscape " +
+                (item && item.available ? "" : " image-box")
+              }
+            >
               <img className="h-full object-cover" src={item.imgUrl} alt="" />
             </div>
             <div className="w-2/3 p-2 md:p-4">
