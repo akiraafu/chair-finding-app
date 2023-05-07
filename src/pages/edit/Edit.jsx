@@ -100,6 +100,7 @@ const Edit = () => {
               placeholder="What did you find?"
               onChange={(e) => setTitle(e.target.value)}
               value={title}
+              required
             />
           </label>
           <label>
@@ -109,6 +110,7 @@ const Edit = () => {
               placeholder="Where is the item?"
               onChange={(e) => setLocation(e.target.value)}
               value={location}
+              required
             />
           </label>
           <label>
@@ -117,11 +119,12 @@ const Edit = () => {
               type="text"
               onChange={(e) => setDetails(e.target.value)}
               value={details}
+              required
             ></textarea>
           </label>
           <label>
             <span>Category</span>
-            <select value={category} onChange={handleSelectChange}>
+            <select value={category} onChange={handleSelectChange} required>
               <option value="">--Choose an option--</option>
               <option value="chair">Chair</option>
               <option value="couch">Couch</option>

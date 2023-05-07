@@ -71,7 +71,7 @@ const Create = () => {
     await addDocument(doc, imageFile);
 
     if (!response.error) {
-      navigate("/");
+      navigate("/all");
     }
   };
 
@@ -88,6 +88,7 @@ const Create = () => {
             placeholder="What did you find?"
             onChange={(e) => setTitle(e.target.value)}
             value={title}
+            required
           />
         </label>
         <label>
@@ -97,6 +98,7 @@ const Create = () => {
             placeholder="Where is the item?"
             onChange={(e) => setLocation(e.target.value)}
             value={location}
+            required
           />
         </label>
         <label>
@@ -105,11 +107,12 @@ const Create = () => {
             type="text"
             onChange={(e) => setDetails(e.target.value)}
             value={details}
+            required
           ></textarea>
         </label>
         <label>
           <span>Category</span>
-          <select value={category} onChange={handleSelectChange}>
+          <select value={category} onChange={handleSelectChange} required>
             <option value="">--Choose an option--</option>
             <option value="chair">Chair</option>
             <option value="couch">Couch</option>
@@ -118,7 +121,7 @@ const Create = () => {
         </label>
         <label>
           <span>Add item image &#40;Lower than 100k&#41; </span>
-          <input type="file" onChange={handleFileChange} />
+          <input type="file" onChange={handleFileChange} required />
           {thumbnailError && <div className="error">{thumbnailError}</div>}
         </label>
         <button className="text-white text-md px-8 py-2 border-2 rounded-md bg-red-500 hover:border-2 hover:border-red-500 hover:bg-transparent hover:text-red-500 ">
