@@ -79,7 +79,7 @@ const Signup = () => {
           />
         </label>
         <label>
-          <span>Profile Photo</span>
+          <span>Profile Photo &#40;Lower than 100k&#41;</span>
           <input type="file" required onChange={handleFileChange} />
           {thumbnailError && <div className="error">{thumbnailError}</div>}
         </label>
