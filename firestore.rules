@@ -8,6 +8,7 @@ service cloud.firestore {
     match /items/{item_id} {
       allow read: if true
       allow create, update: if request.auth != null;
+      allow delete: if request.auth.uid == resource.data.createdBy.id;
     }
   }
 }

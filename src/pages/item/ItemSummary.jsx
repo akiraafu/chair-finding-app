@@ -1,12 +1,15 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useAuthContext } from "../../hooks/useAuthContext";
 import { useFirestore } from "../../hooks/useFirestore";
+
 import moment from "moment";
 
 const itemSummary = ({ item }) => {
   const { user } = useAuthContext();
-  const { updateDocument, response } = useFirestore("items");
+  const { updateDocument, deleteDocument, response } = useFirestore("items");
+  const navigate = useNavigate();
   const [available, setAvailable] = useState(true);
 
   const author = item && item.createdBy.displayName;
@@ -22,6 +25,11 @@ const itemSummary = ({ item }) => {
     if (!response.error) {
       console.log("availablity has changed!");
     }
+  };
+
+  const handleDelete = (e) => {
+    deleteDocument(item.id);
+    navigate("/all");
   };
 
   return (
@@ -61,9 +69,15 @@ const itemSummary = ({ item }) => {
               </Link>
               <button
                 onClick={handleClick}
-                className="px-4 py-2 text-sm text-white bg-red-500 rounded shadow"
+                className="px-4 py-2 mr-2 text-sm text-white bg-amber-500 rounded shadow "
               >
                 Change Availablity
+              </button>
+              <button
+                onClick={handleDelete}
+                className="px-4 py-2 text-sm text-white bg-red-500 rounded shadow"
+              >
+                Delete
               </button>
             </div>
           )}
