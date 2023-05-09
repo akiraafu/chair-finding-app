@@ -13,8 +13,8 @@ This app helps you find and donate unwanted furniture near you. With just a few 
 - Completely free to use, hopefully I can get this on running soon to help people
 - Find and post free furniture items in your area, displayed on the cluster map
 - Search for furniture items by keyword.
-- Allows users to browse through available furniture items and view photos and descriptions
-- Allows users to post their own furniture items to help others in the community
+- Allows all users to browse through available furniture items and view photos and descriptions without login
+- Allows authenticated users to post their own furniture items to help others in the community
 - Authenticate with Firebase Authentication email/password.
 - Upload and display images using Firebase Storage.
 - Store and retrieve furniture data using Firebase Firestore.
@@ -78,7 +78,8 @@ This app helps you find and donate unwanted furniture near you. With just a few 
 
 ### Future development
 
-dark mode
+- dark mode
+- location input dropdown menu
 
 ### Contact me
 
