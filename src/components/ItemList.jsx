@@ -24,18 +24,18 @@ const ItemList = ({ items }) => {
                 alt=""
               />
             </div>
-            <div className="w-2/3 p-2 md:p-4">
-              <h1 className="md:text-2xl font-bold text-gray-900">
+            <div className="w-2/3 p-2 md:p-4 relative">
+              <h1 className="md:text-2xl text-sm font-bold text-gray-900">
                 {item.title}
               </h1>
               <p className="mt-1 md:mt-2 text-xs md:text-sm  text-gray-600">
                 {item.location[0]}
               </p>
-              <div className="flex justify-between mt-1 md:mt-3 item-center">
+              <div className="flex justify-between mt-1 md:mt-3 item-center ">
                 <p className="text-xs md:text-sm text-gray-700">
-                  Posted {moment(item.createdAt.toDate()).fromNow()}
+                  {moment(item.createdAt.toDate()).fromNow()}
                 </p>
-                <button className="p-1 md:px-3 md:py-2 text-xs font-bold text-white uppercase bg-red-500 rounded">
+                <button className="p-1 md:px-3 md:py-2 text-xs font-bold text-white uppercase bg-red-500 rounded absolute bottom-2 right-2">
                   View Item
                 </button>
               </div>
