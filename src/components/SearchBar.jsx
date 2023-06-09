@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState,useEffect, useRef  } from "react";
 import { Link } from "react-router-dom";
 import { useAuthContext } from "../hooks/useAuthContext";
 import { useCollection } from "../hooks/useCollection";
@@ -9,6 +9,22 @@ const SearchBar = () => {
   const [searchValue, setSearchValue] = useState("");
   const { documents, error } = useCollection("items");
   const { user } = useAuthContext();
+  const searchRef = useRef();
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (searchRef.current && !searchRef.current.contains(event.target)) {
+        setSearchValue("");
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
 
   const handleChange = (e) => {
     setSearchValue(e.target.value);
@@ -16,12 +32,15 @@ const SearchBar = () => {
 
   const handleSearch = (searchTerm) => {
     setSearchValue(searchTerm);
+    if (searchTerm) {
+      setSearchValue("");
+    }
   };
 
   return (
     <div className="w-2/3 flex flex-col justify-center items-center md:flex-row">
       <div className="w-full flex justify-center items-center gap-2 max-w-md">
-        <div className="flex gap-1 w-full relative">
+        <div className="flex gap-1 w-full relative" ref={searchRef}>
           <input
             type="text"
             className="block w-full px-10 py-2 text-red-700 bg-white border rounded-full focus:border-red-400 focus:ring-red-300 focus:outline-none focus:ring focus:ring-opacity-40"
