@@ -10,8 +10,8 @@ const Home = () => {
      
     >
       <img src={Background} className="absolute h-full object-cover left-0 -z-10 lg:invisible" />
-      <video autoPlay loop muted class="absolute w-full -z-20 hidden lg:block  " >
-                <source src={Video} type="video/mp4" />
+      <video autoPlay loop muted playsInline class="absolute w-full -z-20 hidden lg:block  " >
+          <source src={Video} type="video/mp4" />
       </video>
       <h1 className="text-white text-2xl md:text-5xl font-bold mb-5">
         Chair Issue
