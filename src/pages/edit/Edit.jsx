@@ -6,6 +6,11 @@ import { useParams } from "react-router-dom";
 import { useDocument } from "../../hooks/useDocument";
 import Geocoder from "../../components/Geocoder";
 
+/**
+ * Edit component for updating an existing item
+ * @param {void} - This component doesn't accept any props
+ * @returns {JSX.Element} A form for editing an existing item
+ */
 const Edit = () => {
   const { id } = useParams();
   const { document, error } = useDocument("items", id);
@@ -23,13 +28,30 @@ const Edit = () => {
   const [image, setImage] = useState(null);
   const [thumbnailError, setThumbnailError] = useState(null);
 
+  ```
+  /**
+   * Updates component state with document properties when the document changes
+   * @param {Object} document - The document object containing title, location, details, and category
+   * @returns {void} This effect does not return anything
+   */
+  ```
   useEffect(() => {
     if (document) {
       // Convert the database values to the right format and set them in the state
+      /**
+       * Handles the change event for a select element
+       * @param {Event} e - The event object from the select change
+       * @returns {void} This function doesn't return a value
+       */
       setTitle(document.title || "");
       setLocation(document.location ? document.location[0] : "");
       setDetails(document.details || "");
       setCategory(document.category || "");
+    /**
+     * Handles file selection for image upload
+     * @param {Event} e - The file input change event
+     * @returns {void} This function doesn't return a value
+     */
     }
   }, [document]);
 
@@ -60,6 +82,11 @@ const Edit = () => {
     setImage(selected);
   };
 
+  /**
+   * Handles the form submission for updating an item.
+   * @param {Event} e - The form submit event.
+   * @returns {Promise<void>} A promise that resolves when the item is updated and navigation occurs.
+   */
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(title, location, details, category, image);
@@ -83,6 +110,12 @@ const Edit = () => {
     await updateDocument(id, doc);
     if (!response.error) {
       navigate(`/items/${id}`);
+    /**
+     * Renders a Geocoder component for geocoding locations
+     * @param {function} getCoords - Callback function to receive and set coordinates
+     * @param {string} location - The location to be geocoded
+     * @returns {JSX.Element} A Geocoder component
+     */
     }
   };
 
@@ -98,7 +131,14 @@ const Edit = () => {
             <input
               type="text"
               placeholder="What did you find?"
-              onChange={(e) => setTitle(e.target.value)}
+              ```
+              /**
+               * Event handler for updating the title state when the input value changes
+               * @param {React.ChangeEvent<HTMLInputElement>} e - The change event object
+               * @returns {void} This function doesn't return a value
+               */
+              
+              ```              onChange={(e) => setTitle(e.target.value)}
               value={title}
               required
             />
@@ -108,6 +148,16 @@ const Edit = () => {
             <input
               type="text"
               placeholder="Where is the item?"
+              /**
+               * Event handler for updating the location state when the input value changes
+               /**
+                * Handles the change event for an input field and updates the details state
+                * @param {Event} e - The change event object
+                * @returns {void} This function does not return a value
+                */
+               * @param {React.ChangeEvent<HTMLInputElement>} e - The change event object
+               * @returns {void} This function doesn't return a value
+               */
               onChange={(e) => setLocation(e.target.value)}
               value={location}
               required

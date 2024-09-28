@@ -3,7 +3,14 @@ import { Link } from "react-router-dom";
 import Background from "../../assets/bg.jpg";
 import Video from '../../assets/video-bg.mp4'
 
-const Home = () => {
+```
+/**
+ * Renders the Home component, which displays the main landing page of the Chair Issue application.
+ * @returns {JSX.Element} A div containing the home page content, including a background image/video,
+ *                        title, description, and a button to view chairs.
+ */
+
+```const Home = () => {
   return (
     <div
       className="w-screen h-[calc(100vh-140px)] relative bg-black bg-opacity-50 flex flex-col justify-center items-center overflow-hidden "

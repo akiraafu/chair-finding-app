@@ -6,10 +6,21 @@ import { useFirestore } from "../../hooks/useFirestore";
 
 import moment from "moment";
 
+/**
+ * Renders a summary of an item with its details and associated actions
+ * @param {Object} props - The component props
+ * @param {Object} props.item - The item object containing details to be displayed
+ * @returns {JSX.Element} A React component displaying the item summary
+ */
 const itemSummary = ({ item }) => {
   const { user } = useAuthContext();
   const { updateDocument, deleteDocument, response } = useFirestore("items");
   const navigate = useNavigate();
+  /**
+   * Handles the click event to toggle availability and update the document.
+   * @param {void} - This function doesn't take any parameters.
+   * @returns {Promise<void>} A promise that resolves when the document update is complete.
+   */
   const [available, setAvailable] = useState(true);
 
   const author = item && item.createdBy.displayName;
@@ -27,6 +38,11 @@ const itemSummary = ({ item }) => {
     }
   };
 
+  /**
+   * Handles the deletion of a document and navigates to the "all" page.
+   * @param {Event} e - The event object triggered by the delete action.
+   * @returns {void} This function doesn't return a value.
+   */
   const handleDelete = (e) => {
     deleteDocument(item.id);
     navigate("/all");

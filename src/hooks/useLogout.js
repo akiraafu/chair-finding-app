@@ -41,6 +41,10 @@ export const useLogout = () => {
   };
 
   useEffect(() => {
+    /**
+     * Creates and returns a function that sets the cancellation state to true.
+     * @returns {Function} A function that, when called, sets isCancelled to true.
+     */
     return () => {
       setIsCancelled(true);
     };

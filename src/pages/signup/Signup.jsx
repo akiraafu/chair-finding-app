@@ -3,6 +3,10 @@ import { useSignup } from "../../hooks/useSignup";
 
 import "./signup.css";
 
+/**
+ * Signup component for user registration
+ * @returns {JSX.Element} A form for user signup including fields for display name, email, password, and profile photo
+ */
 const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -12,6 +16,16 @@ const Signup = () => {
 
   const { signup, isPending, error } = useSignup();
 
+  /**
+   * Handles the form submission for user signup.
+   * @param {Event} e - The form submission event.
+   * @returns {void} This function doesn't return a value.
+   */
+  /**
+   * Handles file selection and validation for image upload
+   * @param {Event} e - The file input change event
+   * @returns {void} This function doesn't return a value, but updates state
+   */
   const handleSubmit = (e) => {
     e.preventDefault();
     signup(email, password, displayName, thumbnail);
@@ -45,13 +59,28 @@ const Signup = () => {
     <div className="xl:h-[calc(100vh-100px)] flex justify-center items-center">
       <form className="auth-form" onSubmit={handleSubmit}>
         <h2>Sign up</h2>
+        /**
+         * Handles the change event for updating the display name
+         * @param {React.ChangeEvent<HTMLInputElement>} e - The change event object
+         * @returns {void} This function does not return a value
+         */
         <label>
           <span>Display name:</span>
           <input
             type="text"
             required
             onChange={(e) => {
+              /**
+               * Updates the email state when the input value changes
+               * @param {React.ChangeEvent<HTMLInputElement>} e - The change event object
+               * @returns {void} This function doesn't return a value
+               */
               setDisplayName(e.target.value);
+            /**
+             * Handles the change event for the password input field
+             * @param {React.ChangeEvent<HTMLInputElement>} e - The change event object
+             * @returns {void} This function doesn't return a value
+             */
             }}
             value={displayName}
           />

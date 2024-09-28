@@ -8,10 +8,25 @@ import ClusterMap from "../../components/ClusterMap";
 import ItemList from "../../components/ItemList";
 import ItemFilter from "./ItemFilter";
 
+/**
+ * Renders a component displaying a list of chairs with filtering options and a map.
+ * @returns {JSX.Element} A React component that shows a list of chairs, filter controls, and a map.
+ */
 const AllChairs = () => {
   const { documents, error } = useCollection("items");
   const [currentFilter, setCurrentFilter] = useState("all");
 
+  /**
+   * Updates the current filter with a new filter value
+   * @param {*} newFilter - The new filter value to be set
+   * @returns {void} This function doesn't return a value
+   */
+  /**
+   * Filters documents based on the current filter category
+   * @param {Array} documents - An array of document objects to be filtered
+   * @param {string} currentFilter - The current filter category ('all', 'chair', 'couch', 'other')
+   * @returns {Array} An array of filtered document objects based on the currentFilter
+   */
   const changeFilter = (newFilter) => {
     setCurrentFilter(newFilter);
   };
