@@ -4,6 +4,11 @@ import { useDocument } from "../../hooks/useDocument";
 import ItemSummary from "./ItemSummary";
 import ItemComments from "./ItemComments";
 
+/**
+ * Renders a detailed view of an item, including its summary and comments.
+ * @param {void} - This component doesn't accept any props directly.
+ * @returns {JSX.Element} A React component that displays an item's details or loading/error states.
+ */
 const Item = () => {
   const { id } = useParams();
   const { document, error } = useDocument("items", id);
