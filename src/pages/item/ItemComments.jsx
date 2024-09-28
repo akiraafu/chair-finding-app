@@ -9,11 +9,21 @@ import moment from "moment";
 import Avatar from "../../components/Avatar";
 import ItemMap from "../../components/ItemMap";
 
+/**
+ * Renders a component for displaying and adding comments to an item
+ * @param {Object} item - The item object containing comments and other properties
+ * @returns {JSX.Element} A div containing item comments, a form to add new comments, and user authentication prompts
+ */
 const ItemComments = ({ item }) => {
   const { updateDocument, response } = useFirestore("items");
   const [newComment, setNewComment] = useState("");
   const { user } = useAuthContext();
 
+  /**
+   * Handles the submission of a new comment
+   * @param {Event} e - The event object from the form submission
+   * @returns {Promise<void>} A promise that resolves when the comment is added
+   */
   const handleSubmit = async (e) => {
     e.preventDefault();
     const commentToAdd = {
@@ -38,6 +48,11 @@ const ItemComments = ({ item }) => {
       </div>
       <div className="w-full item-comments rounded-lg shadow-md  bg-gray-50 p-5 mb-10">
         <h4 className="font-bold text-red-700 mb-3">Item Comments</h4>
+        /**
+         * Renders a list of comments for an item
+         * @param {Object} item - The item containing comments to be rendered
+         * @returns {JSX.Element[]} An array of JSX elements representing individual comments
+         */
         <ul>
           {item.comments.length === 0 && (
             <p className="text-gray-400 my-10">No comments yet</p>
@@ -67,6 +82,11 @@ const ItemComments = ({ item }) => {
               <span>Add a comment</span>
               <textarea
                 required
+                /**
+                 * Event handler for updating the new comment state
+                 * @param {React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>} e - The change event object
+                 * @returns {void} This function doesn't return a value
+                 */
                 onChange={(e) => setNewComment(e.target.value)}
                 value={newComment}
               ></textarea>
