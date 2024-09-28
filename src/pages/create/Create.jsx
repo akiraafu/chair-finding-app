@@ -4,6 +4,10 @@ import { useAuthContext } from "../../hooks/useAuthContext";
 import { useFirestore } from "../../hooks/useFirestore";
 import Geocoder from "../../components/Geocoder";
 
+/**
+ * Create component for adding a new item
+ * @returns {JSX.Element} A form for creating a new item with fields for title, location, details, category, and image
+ */
 const Create = () => {
   const { addDocument, response } = useFirestore("items");
   const { user } = useAuthContext();
@@ -19,10 +23,20 @@ const Create = () => {
   const [image, setImage] = useState(null);
   const [thumbnailError, setThumbnailError] = useState(null);
 
+  /**
+   * Handles the change event for a select element
+   * @param {Object} e - The event object from the select change event
+   * @returns {void} This function doesn't return a value
+   */
   const handleSelectChange = (e) => {
     setCategory(e.target.value);
   };
 
+  /**
+   * Handles file change event for image upload
+   * @param {Event} e - The file input change event
+   * @returns {void} This function doesn't return a value
+   */
   const handleFileChange = (e) => {
     setImage(null);
     //only allow 1 file be selected
@@ -41,6 +55,11 @@ const Create = () => {
     if (selected.size > 100000) {
       setThumbnailError("Image file size must be less than 100kb");
       return;
+    /**
+     * Handles the form submission for creating a new document.
+     * @param {Event} e - The form submission event.
+     * @returns {Promise<void>} A promise that resolves when the submission is complete.
+     */
     }
     setThumbnailError(null);
     setImage(selected);
@@ -77,7 +96,20 @@ const Create = () => {
 
   return (
     <div className="mx-3 md:w-2/5 create-form my-10 rounded-lg shadow-md bg-gray-50 p-10">
+      ```
+      /**
+       * Renders a Geocoder component for converting a location to coordinates
+       * @param {function} getCoords - Callback function to receive and set the coordinates
+       * @param {string} location - The location to be geocoded
+       * @returns {JSX.Element} A Geocoder component
+       */
+      ```
       <Geocoder getCoords={(coords) => setCoords(coords)} location={location} />
+/**
+ * Event handler for updating the title state when the input value changes
+ * @param {React.ChangeEvent<HTMLInputElement>} e - The change event object
+ * @returns {void} This function doesn't return a value
+ */
 
       <h2 className="page-title font-bold text-lg">Add a new item</h2>
       <form onSubmit={handleSubmit}>
@@ -96,6 +128,11 @@ const Create = () => {
           <input
             type="text"
             placeholder="Where is the item?"
+            /**
+             * Event handler for updating the location state when the input value changes
+             * @param {React.ChangeEvent<HTMLInputElement>} e - The change event object
+             * @returns {void} This function doesn't return a value
+             */
             onChange={(e) => setLocation(e.target.value)}
             value={location}
             required
@@ -105,6 +142,11 @@ const Create = () => {
           <span>Description</span>
           <textarea
             type="text"
+            /**
+             * Event handler for updating the details state when the input value changes
+             * @param {React.ChangeEvent<HTMLInputElement>} e - The change event object
+             * @returns {void} This function doesn't return a value
+             */
             onChange={(e) => setDetails(e.target.value)}
             value={details}
             required
