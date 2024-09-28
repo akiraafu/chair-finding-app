@@ -5,6 +5,11 @@ import { useDocument } from "../../hooks/useDocument";
 import Avatar from "../../components/Avatar";
 import ItemList from "../../components/ItemList";
 
+/**
+ * Renders a user profile page with their posted items
+ * @param {void} - This component doesn't accept any parameters directly
+ * @returns {JSX.Element} A div containing user information and a list of their posted items
+ */
 const User = () => {
   const { id } = useParams();
   const { document } = useDocument("users", id);
@@ -12,6 +17,12 @@ const User = () => {
 
   let userItems = null;
   if (documents) {
+    /**
+     * Filters documents to return only those created by a specific user
+     * @param {Array} documents - The array of document objects to filter
+     * @param {string} id - The unique identifier of the user
+     * @returns {Array} An array of document objects created by the specified user
+     */
     userItems = documents.filter((d) => d.createdBy.id === id);
   }
 
